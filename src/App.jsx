@@ -1,8 +1,13 @@
-import logo from "./logo.svg";
-import "./App.css";
+// import Layout from "./components/layout";
+// import Slider from "./components/slider/slider";
+import AppRoutes from "./routes/Routes";
 
 function App() {
-  return <div className="App">GoExpertly</div>;
+  return (
+    <>
+      <AppRoutes />
+    </>
+  );
 }
 
 export default App;
