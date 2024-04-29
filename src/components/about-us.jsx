@@ -69,7 +69,10 @@ function Aboutus() {
             </div>
             <div class="w-full md:w-1/2">
               <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
-                <img src="https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" />
+                <img
+                  src="https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                  alt="aboutUS Page Image1"
+                />
               </div>
             </div>
           </div>
@@ -95,6 +98,7 @@ function Aboutus() {
             <img
               src={tailoredSolutions}
               class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
+              alt="aboutUS Page Image2"
             />
           </div>
           {/* 
@@ -132,13 +136,21 @@ function Aboutus() {
 
           {/* <!-- Image --> */}
           <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
-            <img src={experts} class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32" />
+            <img
+              src={experts}
+              class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
+              alt="aboutUS Page Image3"
+            />
           </div>
         </div>
         <div class="box-border flex flex-col items-center content-center  pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           {/* <!-- Image --> */}
           <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
-            <img src={patners} class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 " />
+            <img
+              src={patners}
+              class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
+              alt="aboutUS Page Image4"
+            />
           </div>
           {/* 
         <!-- Content --> */}
@@ -174,7 +186,11 @@ function Aboutus() {
 
           {/* <!-- Image --> */}
           <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
-            <img src={excel} class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32" />
+            <img
+              src={excel}
+              class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
+              alt="aboutUS Page Image5"
+            />
           </div>
         </div>
       </section>
@@ -196,11 +212,14 @@ function Aboutus() {
                 </p>
               </div>
             </div>
-            <div class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
+            <div
+              class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"
+              alt="aboutUS Page Image6"
+            >
               <img
                 class="mx-auto sm:max-w-sm lg:max-w-full"
                 src={impact}
-                alt="feature image"
+                alt="aboutUS Page Image7"
               />
             </div>
           </div>
