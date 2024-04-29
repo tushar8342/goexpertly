@@ -1,5 +1,5 @@
 import React from "react";
-import ExpertlyLogo from "../../../Assets/logo/ExpertlyLogo.jpg";
+import ExpertlyLogoLogin from "../../../Assets/logo/ExpertlyLogoLogin.jpg";
 import { Link } from "react-router-dom";
 function Footer() {
   return (
@@ -7,7 +7,7 @@ function Footer() {
       <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
           <div class="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-            <img class="w-auto h-9" src={ExpertlyLogo} alt="" />
+            <img class="w-auto h-9" src={ExpertlyLogoLogin} alt="" />
 
             <p class="text-base leading-relaxed text-gray-600 mt-7">
               Empowering growth through innovative training and consulting
@@ -191,7 +191,8 @@ function Footer() {
               Subscribe to newsletter
             </p>
 
-            <form action="#" method="POST" class="mt-6">
+            {/* <form action="#" method="POST" class="mt-6"> */}
+            <form class="mt-6">
               <div>
                 <label for="email" class="sr-only">
                   Email

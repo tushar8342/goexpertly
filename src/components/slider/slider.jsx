@@ -68,10 +68,10 @@ export default function Slider() {
           >
             <img src={firstslidelabel} className="block w-full" alt="..." />
             <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              <h5 className="text-xl">First slide label</h5>
+              {/* <h5 className="text-xl">First slide label</h5>
               <p>
                 Some representative placeholder content for the first slide.
-              </p>
+              </p> */}
             </div>
           </TECarouselItem>
           <TECarouselItem
@@ -80,10 +80,10 @@ export default function Slider() {
           >
             <img src={secondslidelabe} className="block w-full" alt="..." />
             <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              <h5 className="text-xl">Second slide label</h5>
+              {/* <h5 className="text-xl">Second slide label</h5>
               <p>
                 Some representative placeholder content for the second slide.
-              </p>
+              </p> */}
             </div>
           </TECarouselItem>
           <TECarouselItem
@@ -92,10 +92,10 @@ export default function Slider() {
           >
             <img src={thirdslidelabel} className="block w-full" alt="..." />
             <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              <h5 className="text-xl">Third slide label</h5>
+              {/* <h5 className="text-xl">Third slide label</h5>
               <p>
                 Some representative placeholder content for the third slide.
-              </p>
+              </p> */}
             </div>
           </TECarouselItem>
         </div>
