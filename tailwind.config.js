@@ -14,4 +14,4 @@ module.exports = {
     require("tw-elements-react/dist/plugin.cjs"),
   ],
 };
-const withMT = require("@material-tailwind/react/utils/withMT");
+
