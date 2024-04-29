@@ -4,7 +4,47 @@ function Consulting() {
   return (
     <Layout>
       <section class="bg-white dark:bg-gray-900">
+        <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+          <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            <span class="text-blue-500">Consulting</span>
+          </h2>
+        </div>
+      </section>
+
+      <div className="">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <p className="mb-4">
+            Experience the ease and flexibility of personalized, expert-led
+            consultation or instruction at the time and place that suits you
+            best.
+          </p>
+
+          <p className="mb-4">
+            Simply share your needs with us, and we'll craft a tailored solution
+            designed to alleviate any concerns while maximizing the benefits for
+            you and your team.
+          </p>
+
+          <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+            Our customized consulting/training services offer:
+          </h2>
+          <ul class="max-w-md space-y-1  list-disc list-inside dark:text-gray-400">
+            <li>Tailored curriculum to align with your specific goals.</li>
+            <li>Flexible scheduling and course delivery options.</li>
+            <li>Exclusive access to expert instructors.</li>
+            <li>
+              Scalable training solutions suitable for groups of any size.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <section class="bg-white dark:bg-gray-900">
         <div class="container px-4 py-8 mx-auto md:w-2/3">
+          <p className="mt-2 text-lg text-gray-800 font-medium leading-relaxed   bg-clip-text">
+            Take the next step towards tailored training excellence or a private
+            consulting session by requesting a personalized estimate today.
+          </p>
+
           <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-6">
             <form>
               <div class="-mx-2 md:items-center md:flex">

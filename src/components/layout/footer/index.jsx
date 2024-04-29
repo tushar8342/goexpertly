@@ -152,7 +152,7 @@ function Footer() {
                 </Link>
               </li>
 
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   title=""
@@ -161,7 +161,7 @@ function Footer() {
                   {" "}
                   Customer Support{" "}
                 </Link>
-              </li>
+              </li> */}
 
               <li>
                 <Link
