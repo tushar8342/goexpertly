@@ -1,105 +1,102 @@
-import React from "react";
-import { TECarousel, TECarouselItem } from "tw-elements-react";
+import React, { useEffect, useState } from "react";
+
 import firstslidelabel from "../../Assets/sliderImage/firstslidelabel.jpg";
 import secondslidelabe from "../../Assets/sliderImage/secondslidelabel.jpg";
 import thirdslidelabel from "../../Assets/sliderImage/thirdslidelabel.jpg";
-
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 export default function Slider() {
+  const carouselImages = [firstslidelabel, secondslidelabe, thirdslidelabel];
+
+  const [carouselItem, setCarouselItem] = useState(0);
+  const numCarouselItems = carouselImages.length;
+  // const changeToPrevious = () => {
+  //   setCarouselItem(Math.max(carouselItem - 1, 0));
+  // };
+  // const changeToNext = () => {
+  //   setCarouselItem(Math.min(carouselItem + 1, numCarouselItems - 1));
+  // };
+  const changeToPrevious = () => {
+    setCarouselItem((carouselItem - 1 + numCarouselItems) % numCarouselItems);
+  };
+
+  const changeToNext = () => {
+    setCarouselItem((carouselItem + 1) % numCarouselItems);
+  };
+  const changeToGivenItem = (i) => {
+    setCarouselItem(i);
+  };
+
+  const indicatorClasses = (i) =>
+    `w-8 h-1.5 transition duration-500 ${
+      carouselItem === i ? "bg-white" : "bg-gray-500  scale-75"
+    }`;
+  const imagesContainerStyle = { width: `${numCarouselItems}00%` };
+  const imgContainerstyle = (index) =>
+    index === 0
+      ? {
+          width: `${100 / numCarouselItems}%`,
+          marginLeft: `-${(carouselItem * 100) / numCarouselItems}%`,
+        }
+      : {
+          width: `${100 / numCarouselItems}%`,
+        };
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setCarouselItem((carouselItem) => (carouselItem + 1) % numCarouselItems);
+    }, 4000);
+    return () => window.clearInterval(id);
+  }, [numCarouselItems]);
   return (
     <>
-      <TECarousel
-        showControls
-        showIndicators
-        crossfade
-        ride="carousel"
-        prevBtnIcon={
-          <>
-            <span className="inline-block text-black h-8 w-8 [&>svg]:h-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-            </span>
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Previous
-            </span>
-          </>
-        }
-        nextBtnIcon={
-          <>
-            <span className="inline-block text-black h-8 w-8 [&>svg]:h-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
-            </span>
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Next
-            </span>
-          </>
-        }
-        theme={{
-          indicator:
-            "mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-black bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none",
-        }}
-      >
-        <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-          <TECarouselItem
-            itemID={1}
-            className="relative float-left -mr-[100%] hidden w-full !transform-none transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-          >
-            <img src={firstslidelabel} className="block w-full" alt="..." />
-            <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              {/* <h5 className="text-xl">First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p> */}
-            </div>
-          </TECarouselItem>
-          <TECarouselItem
-            itemID={2}
-            className="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-          >
-            <img src={secondslidelabe} className="block w-full" alt="..." />
-            <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              {/* <h5 className="text-xl">Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p> */}
-            </div>
-          </TECarouselItem>
-          <TECarouselItem
-            itemID={3}
-            className="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-          >
-            <img src={thirdslidelabel} className="block w-full" alt="..." />
-            <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-              {/* <h5 className="text-xl">Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p> */}
-            </div>
-          </TECarouselItem>
+      <div className="relative my-4 h-[65vh] w-[90%] overflow-hidden m-auto">
+        <button
+          onClick={changeToPrevious}
+          className="absolute top-0 bottom-0 left-0 flex items-center justify-center p-4 border-0 text-center font-bold opacity-30 hover:opacity-60 z-10"
+        >
+          <span className="text-white text-4xl">
+            <IoIosArrowDropleftCircle />
+          </span>
+        </button>
+        <button
+          onClick={changeToNext}
+          className="absolute top-0 bottom-0 right-0 flex items-center justify-center p-4 border-0 text-center font-bold opacity-30 hover:opacity-60 z-10"
+        >
+          <span className="text-white text-4xl">
+            <IoIosArrowDroprightCircle />
+          </span>
+        </button>
+
+        <div className="z-10 absolute left-0 right-0 bottom-0 flex justify-center gap-4 p-0 mb-4">
+          {carouselImages.map((_, i) => (
+            <button
+              key={i}
+              className={indicatorClasses(i)}
+              onClick={() => changeToGivenItem(i)}
+            ></button>
+          ))}
         </div>
-      </TECarousel>
+
+        <div className="flex relative h-full" style={imagesContainerStyle}>
+          {carouselImages.map((carouselImg, i) => (
+            <div
+              key={i}
+              className="relative h-full transition-all"
+              style={imgContainerstyle(i)}
+            >
+              <img
+                src={carouselImg}
+                className="block w-full h-full object-cover"
+                alt="..."
+              />
+              <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-center"></div>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 }

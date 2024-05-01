@@ -85,9 +85,28 @@ function Subscribe() {
                 </div>
               </div>
 
-              <button class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Subscribe
-              </button>
+              <div class="mt-4">
+                <div class="flex items-start mb-5">
+                  <div class="flex items-center h-5">
+                    <input
+                      id="remember"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                      required
+                    />
+                  </div>
+                  <label for="remember" class="ms-2 text-sm  ">
+                    I agree to receive information about goexpertly.com training
+                  </label>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                  Subscribe
+                </button>
+              </div>
             </form>
           </div>
         </div>

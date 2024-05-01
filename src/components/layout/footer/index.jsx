@@ -15,7 +15,7 @@ function Footer() {
               landscapes.
             </p>
 
-            <ul class="flex items-center space-x-3 mt-9">
+            {/* <ul class="flex items-center space-x-3 mt-9">
               <li>
                 <Link
                   to="/"
@@ -85,7 +85,7 @@ function Footer() {
                   </svg>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div>

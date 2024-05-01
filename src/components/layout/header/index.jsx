@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
         <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={ExpertlyLogoLogin} class="h-12 w-15" alt="Flowbite Logo" />
         </Link>
