@@ -32,7 +32,7 @@ function ContactUs() {
             </p>
           </div>
 
-          <div class="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
+          <div class="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-2">
             <div class="flex flex-col items-center justify-center text-center">
               <span class="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
                 <svg
@@ -89,14 +89,16 @@ function ContactUs() {
                 Office
               </h2>
               <p class="mt-2 text-gray-500 dark:text-gray-400">
-                Come say hello at our office HQ.
+                Come say hello at our office.
               </p>
               <p class="mt-2 text-blue-500 dark:text-blue-400">
+                30 N Gould St, STE R, Sheridan, WY 82801
+                <br />
                 1317 Edgewater Dr, Orlando, FL 32804
               </p>
             </div>
 
-            <div class="flex flex-col items-center justify-center text-center">
+            {/* <div class="flex flex-col items-center justify-center text-center">
               <span class="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,12 +125,12 @@ function ContactUs() {
                 Office
               </h2>
               <p class="mt-2 text-gray-500 dark:text-gray-400">
-                Come say hello at our office HQ.
+                Come say hello at our office.
               </p>
               <p class="mt-2 text-blue-500 dark:text-blue-400">
-                30 N Gould St, STE R, Sheridan, WY 82801
+                
               </p>
-            </div>
+            </div> */}
 
             {/* <div class="flex flex-col items-center justify-center text-center">
               <span class="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
