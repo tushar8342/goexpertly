@@ -13,6 +13,10 @@ import Subscribe from "../components/subscribe";
 import ContactUs from "../components/contact-us";
 import Consulting from "../components/consulting";
 import Webinars from "../components/webinars";
+import Training from "../components/training";
+import Archive from "../components/archive";
+import Cart from "../components/cart";
+import SingleTrainingDetail from "../components/SingleTrainingDetail";
 
 const AllRoutes = () => {
   return (
@@ -29,6 +33,10 @@ const AllRoutes = () => {
       <Route path="/consulting" element={<Consulting />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/webinars" element={<Webinars />} />
+      <Route path="/training" element={<Training />} />
+      <Route path="/training/:id" element={<SingleTrainingDetail />} />
+      <Route path="/archive" element={<Archive />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

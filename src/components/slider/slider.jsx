@@ -8,7 +8,24 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 export default function Slider() {
-  const carouselImages = [firstslidelabel, secondslidelabe, thirdslidelabel];
+  // const carouselImages = [firstslidelabel, secondslidelabe, thirdslidelabel];
+  const carouselImages = [
+    {
+      src: firstslidelabel,
+      label: "First slide label",
+      text: "The community thrives when learners share, not just stare",
+    },
+    {
+      src: secondslidelabe,
+      label: "Second slide label",
+      text: "In the virtual classroom, every learner has a front-row seat",
+    },
+    {
+      src: thirdslidelabel,
+      label: "Third slide label",
+      text: "Click, learn, grow: the mantra of the online training era",
+    },
+  ];
 
   const [carouselItem, setCarouselItem] = useState(0);
   const numCarouselItems = carouselImages.length;
@@ -88,11 +105,16 @@ export default function Slider() {
               style={imgContainerstyle(i)}
             >
               <img
-                src={carouselImg}
+                src={carouselImg.src}
                 className="block w-full h-full object-cover"
                 alt="..."
               />
-              <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-center"></div>
+
+              {/* <div className="absolute top-[90%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-center bg-white shadow-md rounded-lg hidden md:inline-block lg:inline-block xl:inline-block">
+                <p className="text-[20px] font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text inline-block px-2">
+                  {carouselImg.text}
+                </p>
+              </div> */}
             </div>
           ))}
         </div>

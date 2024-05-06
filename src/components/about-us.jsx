@@ -12,18 +12,18 @@ function Aboutus() {
     <Layout>
       {/* 
 <!-- Section 2 --> */}
-      <section class="px-2 py-32 bg-white md:px-0">
-        <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
-          <div class="flex flex-wrap items-center sm:-mx-3">
-            <div class="w-full md:w-1/2 md:px-3">
-              <div class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
-                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
-                  <span class="block xl:inline"></span>
-                  <span class="block text-blue-600 xl:inline">
+      <section className="px-2 py-32 bg-white md:px-0">
+        <div className="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+          <div className="flex flex-wrap items-center sm:-mx-3">
+            <div className="w-full md:w-1/2 md:px-3">
+              <div className="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+                  <span className="block xl:inline"></span>
+                  <span className="block text-blue-600 xl:inline">
                     Welcome to Expertly
                   </span>
                 </h1>
-                <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">
+                <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">
                   Where we believe in empowering individuals and organizations
                   to reach their full potential through innovative training and
                   strategic consulting solutions. Founded with a passion for
@@ -31,7 +31,7 @@ function Aboutus() {
                   to delivering impactful results that propel our clients
                   forward.
                 </p>
-                <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">
+                <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">
                   At Expertly, we understand that in today's rapidly evolving
                   business landscape, continuous learning and adaptation are
                   essential for success. That's why we offer a comprehensive
@@ -40,21 +40,21 @@ function Aboutus() {
                   and strategies needed to thrive in their respective
                   industries.
                 </p>
-                <div class="relative flex flex-col sm:flex-row sm:space-x-4">
+                <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                   <Link
                     to="/signup"
-                    class="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-blue-600 rounded-md sm:mb-0 hover:bg-blue-700 sm:w-auto"
+                    className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-blue-600 rounded-md sm:mb-0 hover:bg-blue-700 sm:w-auto"
                   >
                     Try It Free
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 ml-1"
+                      className="w-5 h-5 ml-1"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
@@ -62,15 +62,15 @@ function Aboutus() {
                   </Link>
                   <a
                     href="#section1"
-                    class="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
+                    className="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
                   >
                     Learn More
                   </a>
                 </div>
               </div>
             </div>
-            <div class="w-full md:w-1/2">
-              <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
+            <div className="w-full md:w-1/2">
+              <div className="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                   alt="aboutUS Page Image1"
@@ -84,32 +84,32 @@ function Aboutus() {
       {/* <!-- Section 3 --> */}
 
       <section
-        class="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24"
+        className="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24"
         id="section1"
       >
-        <div class="box-border flex flex-col items-center content-center pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-col max-w-7xl lg:px-16">
-          <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
-            <span class="block xl:inline"></span>
-            <span class="block text-blue-600 xl:inline">Our Approach</span>
+        <div className="box-border flex flex-col items-center content-center pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-col max-w-7xl lg:px-16">
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+            <span className="block xl:inline"></span>
+            <span className="block text-blue-600 xl:inline">Our Approach</span>
           </h1>
         </div>
 
-        <div class="box-border flex flex-col items-center justify-center pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+        <div className="box-border flex flex-col items-center justify-center pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           {/* <!-- Image --> */}
-          <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+          <div className="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
             <img
               src={tailoredSolutions}
-              class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
+              className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
               alt="aboutUS Page Image2"
             />
           </div>
           {/* 
         <!-- Content --> */}
-          <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+          <div className="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+            <h2 className="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
               Tailored Solutions
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+            <p className="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
               We recognize that every client is unique, with specific goals,
               challenges, and objectives. That's why we take a personalized
               approach to every project, working closely with our clients to
@@ -119,13 +119,13 @@ function Aboutus() {
           </div>
           {/* <!-- End  Content --> */}
         </div>
-        <div class="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
+        <div className="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
           {/* <!-- Content --> */}
-          <div class="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+          <div className="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
+            <h2 className="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
               Expertise & Experience
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-10 lg:text-lg">
+            <p className="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-10 lg:text-lg">
               Backed by a team of seasoned professionals with years of industry
               experience, we bring a wealth of knowledge and expertise to every
               engagement. Whether it's leadership development, compliance
@@ -137,30 +137,30 @@ function Aboutus() {
           {/* <!-- End  Content --> */}
 
           {/* <!-- Image --> */}
-          <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
+          <div className="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
             <img
               src={experts}
-              class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
+              className="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
               alt="aboutUS Page Image3"
             />
           </div>
         </div>
-        <div class="box-border flex flex-col items-center content-center  pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+        <div className="box-border flex flex-col items-center content-center  pb-6 px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           {/* <!-- Image --> */}
-          <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+          <div className="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
             <img
               src={patners}
-              class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
+              className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
               alt="aboutUS Page Image4"
             />
           </div>
           {/* 
         <!-- Content --> */}
-          <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+          <div className="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+            <h2 className="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
               Collaborative Partnership
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+            <p className="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
               We believe in the power of collaboration and teamwork. When you
               partner with Expertly, you're not just hiring a service provider;
               you're forming a collaborative partnership dedicated to achieving
@@ -170,13 +170,13 @@ function Aboutus() {
           </div>
           {/* <!-- End  Content --> */}
         </div>
-        <div class="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
+        <div className="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
           {/* <!-- Content --> */}
-          <div class="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+          <div className="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
+            <h2 className="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
               Commitment to Excellence
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-10 lg:text-lg">
+            <p className="pt-4 pb-8 m-0 leading-7 text-gray-500 border-0 border-gray-300 sm:pr-10 lg:text-lg">
               Excellence is at the heart of everything we do. From the quality
               of our training programs to the professionalism of our consulting
               services, we are committed to delivering excellence in all aspects
@@ -187,25 +187,25 @@ function Aboutus() {
           {/* <!-- End  Content --> */}
 
           {/* <!-- Image --> */}
-          <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
+          <div className="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
             <img
               src={excel}
-              class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
+              className="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
               alt="aboutUS Page Image5"
             />
           </div>
         </div>
       </section>
       {/* <!-- Section 4 --> */}
-      <section class="py-20 bg-gray-50">
-        <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-          <div class="flex flex-wrap items-center -mx-3">
-            <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
-              <div class="w-full lg:max-w-md">
-                <h2 class="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">
+      <section className="py-20 bg-gray-50">
+        <div className="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
+          <div className="flex flex-wrap items-center -mx-3">
+            <div className="order-1 w-full px-3 lg:w-1/2 lg:order-0">
+              <div className="w-full lg:max-w-md">
+                <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">
                   Impact & Results
                 </h2>
-                <p class="mb-4 font-xl tracking-tight text-gray-400 xl:mb-6">
+                <p className="mb-4 font-xl tracking-tight text-gray-400 xl:mb-6">
                   Ultimately, our success is measured by the impact we make and
                   the results we deliver. Whether it's helping individuals
                   unlock their full potential or guiding organizations towards
@@ -215,11 +215,11 @@ function Aboutus() {
               </div>
             </div>
             <div
-              class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"
+              className="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"
               alt="aboutUS Page Image6"
             >
               <img
-                class="mx-auto sm:max-w-sm lg:max-w-full"
+                className="mx-auto sm:max-w-sm lg:max-w-full"
                 src={impact}
                 alt="aboutUS Page Image7"
               />
