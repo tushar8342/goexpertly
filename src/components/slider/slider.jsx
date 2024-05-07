@@ -106,10 +106,12 @@ export default function Slider() {
             >
               <img
                 src={carouselImg.src}
-                className="block w-full h-full object-cover"
+                className="block w-full h-full object-cover blur-sm"
                 alt="..."
               />
-
+            <div className="absolute inset-0 flex items-center justify-center text-white p-4">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ">{carouselImg.text}</p>
+            </div>
               {/* <div className="absolute top-[90%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-center bg-white shadow-md rounded-lg hidden md:inline-block lg:inline-block xl:inline-block">
                 <p className="text-[20px] font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text inline-block px-2">
                   {carouselImg.text}
