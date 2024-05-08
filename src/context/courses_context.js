@@ -1,48 +1,67 @@
-import React, {useContext, useReducer, useEffect} from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import { GET_CATEGORIES, GET_COURSES, GET_SINGLE_COURSE } from "../actions";
 import reducer from "../reducers/courses_reducer";
 import courses from "../utils/data";
+import axios from "axios"; // Import Axios
 
 const initialState = {
-    courses: [],
-    single_course: {},
-    categories: [],
-}
+  courses: [],
+  single_course: {},
+  categories: [],
+};
 
 const CoursesContext = React.createContext();
 
-export const CoursesProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+export const CoursesProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-    const fetchCourse = () => {
-        dispatch({type: GET_COURSES, payload: courses})
+  const fetchCourse = async () => {
+    try {
+      const response = await axios.get(
+        "https://expertly.onrender.com/admin/courses"
+      );
+      dispatch({ type: GET_COURSES, payload: response.data });
+    } catch (error) {
+      console.error("Error fetching courses:", error);
     }
+  };
 
-    const fetchSingleCourse = (id) => {
-        const singleCourse = courses.find(course => course.id === id);
-        dispatch({type: GET_SINGLE_COURSE, payload: singleCourse})
+  const fetchSingleCourse = async (id) => {
+    try {
+      const Coursedata = await axios.get(
+        "https://expertly.onrender.com/admin/courses"
+      );
+      // console.log("Coursedata:", Coursedata);
+
+      const singleCourse = Coursedata.data.find((course) => course.courseID === Number(id));
+      dispatch({ type: GET_SINGLE_COURSE, payload: singleCourse });
+    } catch (error) {
+      console.error("Error fetching courses:", error);
     }
+  };
 
-    const fetchCategories = () => {
-        const categories = [...new Set(courses.map(item => item.category))];
-        dispatch({type: GET_CATEGORIES, payload: categories});
-    }
+  const fetchCategories = () => {
+    const categories = [...new Set(courses.map((item) => item.category))];
+    dispatch({ type: GET_CATEGORIES, payload: categories });
+  };
 
-    useEffect(() => {
-        fetchCourse();
-        fetchCategories();
-    }, []);
+  useEffect(() => {
+    fetchCourse();
+    fetchCategories();
+  }, []);
 
-    return (
-        <CoursesContext.Provider value = {{
-            ...state,
-            fetchSingleCourse
-        }}>
-            {children}
-        </CoursesContext.Provider>
-    )
-}
+  return (
+    <CoursesContext.Provider
+      value={{
+        ...state,
+        fetchSingleCourse,
+      }}
+    >
+      {children}
+    </CoursesContext.Provider>
+  );
+};
 
 export const useCoursesContext = () => {
-    return useContext(CoursesContext);
-}
+  return useContext(CoursesContext);
+};

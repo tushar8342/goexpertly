@@ -18,6 +18,7 @@ import Archive from "../components/archive";
 import Cart from "../components/cart";
 import SingleTrainingDetail from "../components/SingleTrainingDetail";
 
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -35,7 +36,7 @@ const AllRoutes = () => {
       <Route path="/webinars" element={<Webinars />} />
       <Route path="/training" element={<Training />} />
       <Route path="/training/:id" element={<SingleTrainingDetail />} />
-      <Route path="/archive" element={<Archive />} />
+      <Route path="/archive" element={<Archive />}  />
       <Route path="/cart" element={<Cart />} />
     </Routes>
   );
