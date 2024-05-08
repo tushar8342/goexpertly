@@ -31,7 +31,7 @@ const SingleTrainingDetail = () => {
 
   useEffect(() => {
     fetchSingleCourse(id);
-  }, [id]);
+  }, [id,fetchSingleCourse]);
 
   const {
     courseID,
