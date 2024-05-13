@@ -8,14 +8,13 @@
 
 import React, { useEffect } from "react";
 import Layout from "./layout";
-
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useCoursesContext } from "../context/courses_context";
 // import StarRating from "../components/StarRating";
-import { MdInfo } from "react-icons/md";
+// import { MdInfo } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
-import { FaShoppingCart } from "react-icons/fa";
+// import { FaShoppingCart } from "react-icons/fa";
 import { RiClosedCaptioningFill } from "react-icons/ri";
 // import { BiCheck } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -26,12 +25,12 @@ const SingleTrainingDetail = () => {
   // console.log("id:", id);
   const { fetchSingleCourse, single_course } = useCoursesContext();
 
-
   const { addToCart } = useCartContext();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchSingleCourse(id);
-  }, [id,fetchSingleCourse]);
+  }, []);
 
   const {
     courseID,
@@ -41,7 +40,7 @@ const SingleTrainingDetail = () => {
     price,
     discountedPrice,
     description,
-    // what_you_will_learn,
+    what_you_will_learn,
     // content,
     imageSrc,
   } = single_course;
@@ -50,18 +49,20 @@ const SingleTrainingDetail = () => {
     <Layout>
       <SingleCourseWrapper>
         <div className="course-intro mx-auto grid">
-          <div className="course-img">
-            <img src={imageSrc} alt={imageSrc} />
+          <div className="course-img flex justify-center items-center">
+            <img className="w-3/4 h-auto" src={imageSrc} alt={imageSrc} />
           </div>
+
           <div className="course-details">
             {/* <div className="course-category bg-white text-dark text-capitalize fw-6 fs-12 d-inline-block">
             {category}
           </div> */}
             <div className="course-head">
-              <h5>{title}</h5>
+              <div className="font-semibold text-2xl">{title}</div>
             </div>
+
             <div className="course-body">
-              <p className="course-para fs-18">{description}</p>
+              <p className="course-para ">{description}</p>
               {/* <div className="course-rating flex">
               <span className="rating-star-val fw-8 fs-16">{rating_star}</span>
               <StarRating rating_star={rating_star} />
@@ -76,14 +77,14 @@ const SingleTrainingDetail = () => {
                     <span className="fw-6 opacity-08">{instructors}</span>
                   </span>
                 </li>
-                <li className="flex">
+                {/* <li className="flex">
                   <span>
                     <MdInfo />
                   </span>
                   <span className="fs-14 course-info-txt fw-5">
                     Last updated 9/2015
                   </span>
-                </li>
+                </li> */}
                 <li className="flex">
                   <span>
                     <TbWorld />
@@ -108,7 +109,24 @@ const SingleTrainingDetail = () => {
               </div>
             </div>
 
-            <div className="course-btn">
+            <Link
+              to="/cart"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+              onClick={() =>
+                addToCart(
+                  courseID,
+                  imageSrc,
+                  title,
+                  instructors,
+                  discountedPrice
+                  // category
+                )
+              }
+            >
+              Add to Cart
+            </Link>
+
+            {/* <div className="course-btn">
               <Link
                 to="/cart"
                 className="add-to-cart-btn d-inline-block fw-7 bg-purple"
@@ -125,7 +143,7 @@ const SingleTrainingDetail = () => {
               >
                 <FaShoppingCart /> Add to cart
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -162,6 +180,17 @@ const SingleTrainingDetail = () => {
         </div>
       </div> */}
       </SingleCourseWrapper>
+      <section className="bg-white dark:bg-gray-900">
+        <div className="container flex flex-col  px-4 py-12">
+          <h2 className="max-w-2xl  text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            <span className="text-blue-500">Why Should You Attend : </span>
+          </h2>
+
+          <p className=" mt-2  text-gray-500 dark:text-gray-300">
+            {what_you_will_learn}
+          </p>
+        </div>
+      </section>
     </Layout>
   );
 };

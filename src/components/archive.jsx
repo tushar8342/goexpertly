@@ -11,7 +11,7 @@ import {
   MDBCardBody,
   MDBCardImage,
   // MDBIcon,
-  MDBBtn,
+  // MDBBtn,
   MDBRipple,
 } from "mdb-react-ui-kit";
 function Archive() {
@@ -102,7 +102,7 @@ function Archive() {
                         <span className="ml-4"> Duration : </span>
                         <span>{courses.duration}</span>
                         <br />
-                        <span className=""> ID : </span>
+                        {/* <span className=""> ID : </span> */}
 
                         {/* <span>{courses.features[2]}</span> */}
                       </div>
@@ -131,14 +131,14 @@ function Archive() {
                           Details
                         </Link>
 
-                        <MDBBtn
+                        {/* <MDBBtn
                           outline
                           color="primary"
                           size="sm"
                           className="mt-2"
                         >
                           Add to wish list
-                        </MDBBtn>
+                        </MDBBtn> */}
                       </div>
                     </MDBCol>
                   </MDBRow>

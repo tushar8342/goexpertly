@@ -7,8 +7,9 @@ import {
     GET_CART_TOTAL
 } from "../actions";
 
+let cart = localStorage.getItem('cart');
 const loadCartFromStorage = () => {
-    let cart = localStorage.getItem('cart');
+    console.log('cart:', cart)
     if(cart){
         return JSON.parse(localStorage.getItem('cart'));
     } else {
