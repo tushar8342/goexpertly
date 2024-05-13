@@ -30,7 +30,7 @@ const SingleTrainingDetail = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchSingleCourse(id);
-  }, []);
+  }, [id,fetchSingleCourse]);
 
   const {
     courseID,
