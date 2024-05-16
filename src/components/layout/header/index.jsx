@@ -5,7 +5,6 @@ import { useCartContext } from "../../../context/cart_context";
 
 function Header() {
   const { total_items } = useCartContext();
-  console.log("total_items:", total_items);
   return (
     <header className="border-b bg-white font-sans min-h-[60px] px-10 py-3 relative tracking-wide relative z-50">
       <div className="flex flex-wrap items-center max-lg:gap-y-6 max-sm:gap-x-4">
