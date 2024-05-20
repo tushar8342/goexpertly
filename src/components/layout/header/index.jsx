@@ -15,7 +15,7 @@ function Header() {
     <header className="border-b bg-white font-sans min-h-[60px] px-10 py-3 relative tracking-wide relative z-50">
       <div className="flex flex-wrap items-center max-lg:gap-y-6 max-sm:gap-x-4">
         <Link to="/">
-          <img src={ExpertlyLogoLogin} alt="logo" className="w-36" />
+          <img src={ExpertlyLogoLogin} alt="Expertlylogo" className="w-36" />
         </Link>
 
         <div
