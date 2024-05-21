@@ -11,6 +11,12 @@ function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const getMenuClassNames = () => {
+    return `lg:flex lg:items-center ${
+      isMenuOpen ? "block" : "hidden"
+    } max-lg:fixed max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-40 max-lg:before:inset-0 max-lg:before:z-50`;
+  };
+
   return (
     <header className="border-b bg-white font-sans min-h-[60px] px-10 py-3 relative tracking-wide relative z-50">
       <div className="flex flex-wrap items-center max-lg:gap-y-6 max-sm:gap-x-4">
@@ -18,12 +24,7 @@ function Header() {
           <img src={ExpertlyLogoLogin} alt="Expertlylogo" className="w-36" />
         </Link>
 
-        <div
-          id="collapseMenu"
-          className={`max-lg:${
-            isMenuOpen ? "block" : "hidden"
-          } lg:flex lg:items-center max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-40 max-lg:before:inset-0 max-lg:before:z-50`}
-        >
+        <div id="collapseMenu" className={getMenuClassNames()}>
           <button
             id="toggleClose"
             className="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white p-3"
@@ -129,8 +130,11 @@ function Header() {
             </li>
           </ul>
         </div>
-
-        <div className="flex items-center ml-auto space-x-5">
+        <div
+          className={`flex items-center ml-auto space-x-5 ${
+            isMenuOpen ? "hidden" : ""
+          }`}
+        >
           <Link to="/cart">
             <span className="relative mr-3">
               <svg
