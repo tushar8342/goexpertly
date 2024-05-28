@@ -51,8 +51,12 @@ function Login() {
         throw new Error("Failed to authenticate");
       }
       const data = await response.json();
+      console.log("data:", data);
       const token = data.token;
+      const userId = data.userId;
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
+
       return token;
     } catch (error) {
       throw new Error(error.message);

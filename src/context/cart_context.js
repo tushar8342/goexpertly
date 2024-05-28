@@ -9,7 +9,7 @@ import {
 
 let cart = localStorage.getItem('cart');
 const loadCartFromStorage = () => {
-    console.log('cart:', cart)
+    // console.log('cart:', cart)
     if(cart){
         return JSON.parse(localStorage.getItem('cart'));
     } else {

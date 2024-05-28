@@ -17,7 +17,8 @@ import Training from "../components/training";
 import Archive from "../components/archive";
 import Cart from "../components/cart";
 import SingleTrainingDetail from "../components/SingleTrainingDetail";
-
+import PaymentSuccess from "../components/payment-success";
+import PaymentCancel from "../components/payment-cancel";
 
 const AllRoutes = () => {
   return (
@@ -36,8 +37,10 @@ const AllRoutes = () => {
       <Route path="/webinars" element={<Webinars />} />
       <Route path="/training" element={<Training />} />
       <Route path="/training/:id" element={<SingleTrainingDetail />} />
-      <Route path="/archive" element={<Archive />}  />
+      <Route path="/archive" element={<Archive />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/payment-success/:id" element={<PaymentSuccess />} />
+      <Route path="/payment-cancel" element={<PaymentCancel />} />
     </Routes>
   );
 };

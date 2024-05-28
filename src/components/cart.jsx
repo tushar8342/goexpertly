@@ -6,15 +6,54 @@ import { MdClear } from "react-icons/md";
 import CartItem from "./CartItem";
 import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 
 function Cart() {
+  let userId = localStorage.getItem("userId");
+  console.log("userId:", userId);
   const {
     cart: cartItems,
     total_items,
     total_amount,
     clearCart,
   } = useCartContext();
+  // console.log("cartItems:", cartItems[0].courseID);
+  const makePayment = async () => {
+    try {
+      const stripe = await loadStripe(
+        "pk_test_51PBO6KRq04FSuQPh7coRkyBFJTLAbhyuTxQEJ0H7hApVX3LZFRt7OeC8Dnf3UKi7OdUw4wpffFcOYYRRcCgs6fEI00qUyBD1VO"
+      );
 
+      const body = { userId: userId, courseId: Number(cartItems[0].courseID) };
+      console.log("body:", body);
+      const headers = { "Content-Type": "application/json" };
+
+      const response = await fetch(
+        "https://expertly.onrender.com/users/enroll",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const session = await response.json();
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.sessionId,
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error("Error during payment process:", error);
+    }
+  };
   if (cartItems.length < 1) {
     return (
       <Layout>
@@ -81,6 +120,7 @@ function Cart() {
                   <button
                     type="button"
                     className="checkout-btn bg-purple text-white fw-6"
+                    onClick={makePayment}
                   >
                     Checkout
                   </button>
