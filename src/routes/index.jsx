@@ -39,7 +39,7 @@ const AllRoutes = () => {
       <Route path="/training/:id" element={<SingleTrainingDetail />} />
       <Route path="/archive" element={<Archive />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/payment-success/:id" element={<PaymentSuccess />} />
+      <Route path="/payment-success/:paramsid" element={<PaymentSuccess />} />
       <Route path="/payment-cancel" element={<PaymentCancel />} />
     </Routes>
   );
