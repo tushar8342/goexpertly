@@ -6,7 +6,7 @@ import Header from "../Header";
 import Input from "../Input";
 import { signupFields } from "../formFields";
 import FormAction from "../FormAction";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -15,7 +15,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 function Signup() {
   const [signupState, setSignupState] = useState(fieldsState);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
@@ -42,8 +42,11 @@ function Signup() {
       console.log(data);
       // Check response from backend and show appropriate toast message
       if (response.ok) {
-        toast.success("Account created successfully!");
-        // navigate("/login");
+        toast.success("Account created successfully!", {
+          onClose: () => navigate("/login"),
+        });
+     
+        return;
       } else {
         toast.error(data.message); // Assuming the backend sends error messages in a 'message' field
       }

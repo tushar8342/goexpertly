@@ -2,15 +2,22 @@ import React, { useState } from "react";
 import ExpertlyLogoLogin from "../../../Assets/logo/ExpertlyLogoLogin.jpg";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../../context/cart_context";
+import { useAuth } from "../../../context/AuthProvider";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Header() {
   const { total_items } = useCartContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logOut } = useAuth();
 
   const handleToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const handleLogout = () => {
+    logOut();
+    toast.success("You have successfully logged out");
+  };
   const getMenuClassNames = () => {
     return `lg:flex lg:items-center ${
       isMenuOpen ? "block" : "hidden"
@@ -47,6 +54,7 @@ function Header() {
           </button>
 
           <ul className="lg:flex lg:gap-x-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:px-10 max-lg:py-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+            {" "}
             {/* <li className="mb-6 hidden max-lg:block">
               <a href="javascript:void(0)">
                 <img
@@ -119,7 +127,6 @@ function Header() {
                 Contact
               </Link>
             </li>
-
             <li className="max-lg:border-b max-lg:py-3">
               <Link
                 to="/terms-of-use"
@@ -159,18 +166,29 @@ function Header() {
             </span>
           </Link>
 
-          <Link
-            to="/login"
-            className="px-3 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="px-3 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
-          >
-            Sign up
-          </Link>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="px-3 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-3 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="px-3 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
 
           <button id="toggleOpen" className="lg:hidden" onClick={handleToggle}>
             <svg
@@ -187,7 +205,7 @@ function Header() {
             </svg>
           </button>
         </div>
-      </div>
+      </div>{" "}
       {/* <div className="bg-gray-100 border border-transparent focus-within:border-blue-500 focus-within:bg-transparent flex px-6 rounded-full h-10 lg:w-2/4 mt-3 mx-auto max-lg:mt-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"

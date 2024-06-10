@@ -7,15 +7,18 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { CoursesProvider } from "./context/courses_context";
 import { CartProvider } from "./context/cart_context";
+import AuthProvider from "./context/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CoursesProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </CoursesProvider>
+    <AuthProvider>
+      <CoursesProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </CoursesProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

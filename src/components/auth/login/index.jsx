@@ -6,8 +6,8 @@ import Header from "../Header";
 import Input from "../Input";
 import { loginFields } from "../formFields";
 import FormExtra from "../FormExtra";
-// import { useNavigate } from "react-router-dom";
 import FormAction from "../FormAction";
+import { useAuth } from "../../../context/AuthProvider";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -15,8 +15,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
-  const [userDetails, setUserDetails] = useState(null);
-  console.log("userDetails:", userDetails);
+  const { loginAction } = useAuth();  // Get the loginAction function from the context
   // const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,60 +25,58 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = await authenticateUser();
-      await fetchUserDetails(token);
+      await loginAction(loginState);  // Use the loginAction function
       toast.success("Login successful!"); // Display success toast
     } catch (error) {
       console.error("Login failed:", error.message);
       toast.error("Login failed. Please check your credentials."); // Display error toast
     }
   };
+  // const authenticateUser = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://expertly.onrender.com/users/login",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(loginState),
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to authenticate");
+  //     }
+  //     const data = await response.json();
+  //     console.log("data:", data);
+  //     const token = data.token;
+  //     const userId = data.userId;
+  //     localStorage.setItem("token", token);
+  //     localStorage.setItem("userId", userId);
 
-  const authenticateUser = async () => {
-    try {
-      const response = await fetch(
-        "https://expertly.onrender.com/users/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginState),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to authenticate");
-      }
-      const data = await response.json();
-      console.log("data:", data);
-      const token = data.token;
-      const userId = data.userId;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+  //     return token;
+  //   } catch (error) {
+  //     throw new Error(error.message);
+  //   }
+  // };
 
-      return token;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
-
-  const fetchUserDetails = async (token) => {
-    try {
-      const response = await fetch("https://expertly.onrender.com/users/me", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch user details");
-      }
-      const userData = await response.json();
-      setUserDetails(userData);
-    } catch (error) {
-      console.error("Failed to fetch user details:", error.message);
-    }
-  };
+  // const fetchUserDetails = async (token) => {
+  //   try {
+  //     const response = await fetch("https://expertly.onrender.com/users/me", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch user details");
+  //     }
+  //     const userData = await response.json();
+  //     setUserDetails(userData);
+  //   } catch (error) {
+  //     console.error("Failed to fetch user details:", error.message);
+  //   }
+  // };
 
   return (
     <Layout>
@@ -108,7 +105,6 @@ function Login() {
                 />
               ))}
             </div>
-
             <FormExtra />
             <FormAction handleSubmit={handleSubmit} text="Login" />
           </form>

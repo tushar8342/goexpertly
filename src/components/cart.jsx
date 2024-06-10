@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 import Layout from "./layout";
-// import { useCartContext } from "../context/cart_context";
 import styled from "styled-components";
 import { MdClear } from "react-icons/md";
 import CartItem from "./CartItem";
 import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { useAuth } from "../context/AuthProvider";
+import { ClipLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Cart() {
-  let userId = localStorage.getItem("userId");
-  console.log("userId:", userId);
+  const [loading, setLoading] = useState(false);
+
+  const { user } = useAuth();
+  const navigate = useNavigate(); // Initialize useNavigate
+  console.log("user:", user);
   const {
     cart: cartItems,
     total_items,
     total_amount,
     clearCart,
   } = useCartContext();
-  // console.log("cartItems:", cartItems[0].courseID);
+
   const makePayment = async () => {
+    if (!user) {
+      toast.error("You need to login first to checkout!", {
+        onClose: () => navigate("/login"),
+      });
+      return;
+    }
+
+    setLoading(true);
     try {
       const stripe = await loadStripe(
         "pk_test_51PBO6KRq04FSuQPh7coRkyBFJTLAbhyuTxQEJ0H7hApVX3LZFRt7OeC8Dnf3UKi7OdUw4wpffFcOYYRRcCgs6fEI00qUyBD1VO"
       );
 
-      const body = { userId: userId, courseId: Number(cartItems[0].courseID) };
+      const body = {
+        userId: user,
+        cartItems,
+        couponCode: "SUMMER2024",
+      };
       console.log("body:", body);
       const headers = { "Content-Type": "application/json" };
 
@@ -38,6 +57,7 @@ function Cart() {
       );
 
       if (!response.ok) {
+        toast.error("Network response was not ok");
         throw new Error("Network response was not ok");
       }
 
@@ -51,9 +71,13 @@ function Cart() {
         console.error(result.error.message);
       }
     } catch (error) {
+      toast.error(error);
       console.error("Error during payment process:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
   if (cartItems.length < 1) {
     return (
       <Layout>
@@ -65,14 +89,14 @@ function Cart() {
               to="/"
               className="mt-4 inline-block rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
             >
-              {" "}
-              Go back to Home{" "}
+              Go back to Home
             </Link>
           </div>
         </div>
       </Layout>
     );
   }
+
   return (
     <div>
       <Layout>
@@ -121,8 +145,13 @@ function Cart() {
                     type="button"
                     className="checkout-btn bg-purple text-white fw-6"
                     onClick={makePayment}
+                    disabled={loading}
                   >
-                    Checkout
+                    {loading ? (
+                      <ClipLoader size={24} color={"#ffffff"} />
+                    ) : (
+                      "Checkout"
+                    )}
                   </button>
                 </div>
               </div>
@@ -130,14 +159,10 @@ function Cart() {
           </div>
         </CartWrapper>
       </Layout>
+      <ToastContainer />
     </div>
   );
 }
-
-// const NotFoundWrapper = styled.div`
-//   padding: 30px 0;
-//   font-weight: 600;
-// `;
 
 const CartWrapper = styled.div`
   padding: 30px 0;
