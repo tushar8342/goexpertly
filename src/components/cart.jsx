@@ -28,7 +28,8 @@ function Cart() {
   const makePayment = async () => {
     if (!user) {
       toast.error("You need to login first to checkout!", {
-        onClose: () => navigate("/login"),
+        autoClose: 1000,
+        onClose: () => navigate("/signup"),
       });
       return;
     }
@@ -47,14 +48,11 @@ function Cart() {
       console.log("body:", body);
       const headers = { "Content-Type": "application/json" };
 
-      const response = await fetch(
-        "https://expertly.onrender.com/users/enroll",
-        {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch("http://52.72.83.112:8000/users/enroll", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      });
 
       if (!response.ok) {
         toast.error("Network response was not ok");

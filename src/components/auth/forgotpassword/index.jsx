@@ -25,7 +25,7 @@ function ForgotPassword() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://expertly.onrender.com/users/reset-password",
+        "http://52.72.83.112:8000/users/reset-password",
         {
           method: "POST",
           headers: {

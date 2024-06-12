@@ -28,16 +28,13 @@ function Signup() {
 
   const createAccount = async () => {
     try {
-      const response = await fetch(
-        "https://expertly.onrender.com/users/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(signupState),
-        }
-      );
+      const response = await fetch("http://52.72.83.112:8000/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupState),
+      });
       const data = await response.json();
       console.log(data);
       // Check response from backend and show appropriate toast message
@@ -45,7 +42,7 @@ function Signup() {
         toast.success("Account created successfully!", {
           onClose: () => navigate("/login"),
         });
-     
+
         return;
       } else {
         toast.error(data.message); // Assuming the backend sends error messages in a 'message' field

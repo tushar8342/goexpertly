@@ -18,7 +18,7 @@ export const CoursesProvider = ({ children }) => {
   const fetchCourse = async () => {
     try {
       const response = await axios.get(
-        "https://expertly.onrender.com/admin/courses"
+        "http://52.72.83.112:8000/admin/courses"
       );
       dispatch({ type: GET_COURSES, payload: response.data });
     } catch (error) {
@@ -29,11 +29,13 @@ export const CoursesProvider = ({ children }) => {
   const fetchSingleCourse = async (id) => {
     try {
       const Coursedata = await axios.get(
-        "https://expertly.onrender.com/admin/courses"
+        "http://52.72.83.112:8000/admin/courses"
       );
       // console.log("Coursedata:", Coursedata);
 
-      const singleCourse = Coursedata.data.find((course) => course.courseID === Number(id));
+      const singleCourse = Coursedata.data.find(
+        (course) => course.courseID === Number(id)
+      );
       dispatch({ type: GET_SINGLE_COURSE, payload: singleCourse });
     } catch (error) {
       console.error("Error fetching courses:", error);

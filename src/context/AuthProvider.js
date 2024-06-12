@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const loginAction = async (data) => {
     try {
       const response = await fetch(
-        "https://expertly.onrender.com/users/login",
+        "http://52.72.83.112:8000/users/login",
         {
           method: "POST",
           headers: {
