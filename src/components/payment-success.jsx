@@ -12,7 +12,7 @@ function PaymentSuccess() {
     if (paramsid) {
       axios
         .get(
-          `http://52.72.83.112:8000/users/enrollment/success?session_id=${paramsid}`
+          `https://api.goexpertly.com/users/enrollment/success?session_id=${paramsid}`
         )
         .then((response) => {
           console.log("response:", response);

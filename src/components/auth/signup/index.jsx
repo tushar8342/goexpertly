@@ -28,7 +28,7 @@ function Signup() {
 
   const createAccount = async () => {
     try {
-      const response = await fetch("http://52.72.83.112:8000/users/signup", {
+      const response = await fetch("https://api.goexpertly.com/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

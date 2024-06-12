@@ -48,7 +48,7 @@ function Cart() {
       console.log("body:", body);
       const headers = { "Content-Type": "application/json" };
 
-      const response = await fetch("http://52.72.83.112:8000/users/enroll", {
+      const response = await fetch("https://api.goexpertly.com/users/enroll", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),

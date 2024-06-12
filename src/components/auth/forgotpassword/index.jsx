@@ -25,7 +25,7 @@ function ForgotPassword() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://52.72.83.112:8000/users/reset-password",
+        "https://api.goexpertly.com/users/reset-password",
         {
           method: "POST",
           headers: {
