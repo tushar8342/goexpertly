@@ -7,6 +7,7 @@ import Input from "../Input";
 import { signupFields } from "../formFields";
 import FormAction from "../FormAction";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthProvider";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -16,6 +17,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 function Signup() {
   const [signupState, setSignupState] = useState(fieldsState);
   const navigate = useNavigate();
+  const { setUser, setToken, setFullName } = useAuth(); // Use the Auth context
 
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
@@ -36,11 +38,18 @@ function Signup() {
         body: JSON.stringify(signupState),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       // Check response from backend and show appropriate toast message
       if (response.ok) {
+        setUser(data.newUser.id);
+        setToken(data.token);
+        setFullName(data.newUser.fullName);
+        localStorage.setItem("user", data.newUser.id);
+        localStorage.setItem("username", data.newUser.fullName);
+        localStorage.setItem("site", data.token);
         toast.success("Account created successfully!", {
-          onClose: () => navigate("/login"),
+          autoClose: 1000,
+          onClose: () => navigate("/cart"),
         });
 
         return;

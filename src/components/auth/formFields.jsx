@@ -35,12 +35,12 @@ const signupFields = [
   {
     labelText: "Mobile Number",
     labelFor: "mobileNumber",
-    id: "mobileNumber",
-    name: "mobileNumber",
+    id: "phone",
+    name: "phone ",
     type: "tel",
     autoComplete: "tel",
     isRequired: true,
-    placeholder: "Mobile Number",
+    placeholder: "Phone Number",
   },
   {
     labelText: "Email address",

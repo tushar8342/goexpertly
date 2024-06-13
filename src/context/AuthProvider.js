@@ -7,7 +7,12 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(localStorage.getItem("user") || null);
+  const [fullName, setFullName] = useState(
+    localStorage.getItem("username") || null
+  );
   const [token, setToken] = useState(localStorage.getItem("site") || "");
+  console.log("fullName:", fullName);
+
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +36,7 @@ const AuthProvider = ({ children }) => {
       });
       const res = await response.json();
       if (res) {
-        console.log("res.userId:", res.userId);
+        // console.log("res.userId:", res.userId);
         setUser(res.userId);
         setToken(res.token);
         localStorage.setItem("user", res.userId);
@@ -57,7 +62,17 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        user,
+        setFullName,
+        setUser,
+        setToken,
+        loginAction,
+        logOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -15,9 +15,9 @@ import "react-toastify/dist/ReactToastify.css";
 function Cart() {
   const [loading, setLoading] = useState(false);
 
-  const { user } = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate(); // Initialize useNavigate
-  console.log("user:", user);
+  // console.log("token:", token);
   const {
     cart: cartItems,
     total_items,
@@ -26,11 +26,12 @@ function Cart() {
   } = useCartContext();
 
   const makePayment = async () => {
-    if (!user) {
-      toast.error("You need to login first to checkout!", {
-        autoClose: 1000,
-        onClose: () => navigate("/signup"),
-      });
+    if (!token) {
+      // toast.error("You need to login first to checkout!", {
+      //   autoClose: 1000,
+      //   onClose: () => navigate("/signup"),
+      // });
+      navigate("/signup");
       return;
     }
 
@@ -41,12 +42,15 @@ function Cart() {
       );
 
       const body = {
-        userId: user,
         cartItems,
         couponCode: "SUMMER2024",
       };
-      console.log("body:", body);
-      const headers = { "Content-Type": "application/json" };
+      // console.log("body:", body);
+
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+      };
 
       const response = await fetch("https://api.goexpertly.com/users/enroll", {
         method: "POST",

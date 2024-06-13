@@ -15,7 +15,7 @@ function PaymentSuccess() {
           `https://api.goexpertly.com/users/enrollment/success?session_id=${paramsid}`
         )
         .then((response) => {
-          console.log("response:", response);
+          // console.log("response:", response);
           // Assuming the API returns a success message in response.data
           setEnrollmentStatus("Enrollment is successful");
         })
