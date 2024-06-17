@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
 import Header from "../Header";
 import Input from "../Input";
@@ -15,8 +16,9 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
-  const { loginAction } = useAuth();  // Get the loginAction function from the context
-  // const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const { setUser, setToken } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -24,59 +26,33 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      await loginAction(loginState);  // Use the loginAction function
-      toast.success("Login successful!"); // Display success toast
+      const response = await fetch("https://api.goexpertly.com/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginState),
+      });
+      const res = await response.json();
+      if (response.ok) {
+        setUser(res.userId);
+        setToken(res.token);
+        localStorage.setItem("user", res.userId);
+        localStorage.setItem("site", res.token);
+        toast.success("Login successful!");
+        navigate("/"); // Navigate to home page
+      } else {
+        throw new Error(res.message);
+      }
     } catch (error) {
       console.error("Login failed:", error.message);
-      toast.error("Login failed. Please check your credentials."); // Display error toast
+      toast.error("Login failed. Please check your credentials.");
+    } finally {
+      setIsLoading(false);
     }
   };
-  // const authenticateUser = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://expertly.onrender.com/users/login",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(loginState),
-  //       }
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to authenticate");
-  //     }
-  //     const data = await response.json();
-  //     console.log("data:", data);
-  //     const token = data.token;
-  //     const userId = data.userId;
-  //     localStorage.setItem("token", token);
-  //     localStorage.setItem("userId", userId);
-
-  //     return token;
-  //   } catch (error) {
-  //     throw new Error(error.message);
-  //   }
-  // };
-
-  // const fetchUserDetails = async (token) => {
-  //   try {
-  //     const response = await fetch("https://expertly.onrender.com/users/me", {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch user details");
-  //     }
-  //     const userData = await response.json();
-  //     setUserDetails(userData);
-  //   } catch (error) {
-  //     console.error("Failed to fetch user details:", error.message);
-  //   }
-  // };
 
   return (
     <Layout>
@@ -106,7 +82,11 @@ function Login() {
               ))}
             </div>
             <FormExtra />
-            <FormAction handleSubmit={handleSubmit} text="Login" />
+            <FormAction
+              handleSubmit={handleSubmit}
+              text="Login"
+              isLoading={isLoading}
+            />
           </form>
         </div>
       </div>

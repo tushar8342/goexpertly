@@ -30,7 +30,7 @@ const signupFields = [
     type: "text",
     autoComplete: "username",
     isRequired: true,
-    placeholder: "Username",
+    placeholder: "Full Name",
   },
   {
     labelText: "Mobile Number",
