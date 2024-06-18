@@ -14,6 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Cart() {
   const [loading, setLoading] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [discountedAmount, setDiscountedAmount] = useState(null);
 
   const { token } = useAuth();
   const navigate = useNavigate(); // Initialize useNavigate
@@ -24,6 +26,16 @@ function Cart() {
     total_amount,
     clearCart,
   } = useCartContext();
+
+  const applyPromoCode = () => {
+    if (promoCode === "SUMMER2024") {
+      const discount = total_amount * 0.2;
+      setDiscountedAmount(total_amount - discount);
+      toast.success("Promo code applied successfully!");
+    } else {
+      toast.error("No promo code present");
+    }
+  };
 
   const makePayment = async () => {
     if (!token) {
@@ -43,7 +55,7 @@ function Cart() {
 
       const body = {
         cartItems,
-        couponCode: "SUMMER2024",
+        couponCode: promoCode,
       };
       // console.log("body:", body);
 
@@ -126,13 +138,21 @@ function Cart() {
                     </span>
                   </button>
                 </div>
-
                 <div className="cart-items-list grid">
                   {cartItems.map((cartItem) => {
                     return (
                       <CartItem key={cartItem.courseID} cartItem={cartItem} />
                     );
                   })}
+                </div>
+                <div className="promo-code-section">
+                  <input
+                    type="text"
+                    placeholder="Enter promo code"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                  />
+                  <button onClick={applyPromoCode}>Apply Promo Code</button>
                 </div>
               </div>
               {/* end of grid left */}
@@ -141,7 +161,10 @@ function Cart() {
                 <div className="cart-total">
                   <span className="d-block fs-18 fw-6">Total:</span>
                   <div className="cart-total-value fw-8">
-                    ${total_amount.toFixed(2)}
+                    $
+                    {discountedAmount !== null
+                      ? Math.floor(discountedAmount).toFixed(2)
+                      : Math.floor(total_amount).toFixed(2)}
                   </div>
                   <button
                     type="button"
@@ -186,6 +209,32 @@ const CartWrapper = styled.div`
     .cart-items-list {
       margin-top: 20px;
       row-gap: 12px;
+    }
+    .promo-code-section {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+
+      input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        flex-grow: 1;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #45a049;
+        }
+      }
     }
     .cart-total-value {
       font-size: 34px;
