@@ -9,6 +9,7 @@ import FormAction from "../FormAction";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthProvider";
 import { useCartContext } from "../../../context/cart_context";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -19,20 +20,37 @@ function Signup() {
   const { total_items } = useCartContext();
   const [signupState, setSignupState] = useState(fieldsState);
   const [isLoading, setIsLoading] = useState(false);
-  const [passwordError, setPasswordError] = useState(""); // State to handle password mismatch
+  const [passwordError, setPasswordError] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+  const [captchaValue, setCaptchaValue] = useState(null);
   const navigate = useNavigate();
-  const { setUser, setToken, setFullName } = useAuth(); // Use the Auth context
+  const { setUser, setToken, setFullName } = useAuth();
 
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+    setCaptchaError("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signupState.password !== signupState.passwordagain) {
-      setPasswordError("Please enter same password."); // Set error message
+      setPasswordError("Please enter the same password.");
       return;
     }
-    setPasswordError(""); 
+    if (signupState.password === signupState.passwordagain) {
+      setPasswordError("");
+    }
+
+    if (!captchaValue) {
+      setCaptchaError("You can't leave Captcha Code empty");
+      return;
+    }
+
+    setPasswordError("");
+    setCaptchaError("");
     setIsLoading(true);
     await createAccount();
   };
@@ -103,8 +121,15 @@ function Signup() {
                   placeholder={field.placeholder}
                 />
               ))}
-              {passwordError && <p className="text-red-500">{passwordError}</p>}{" "}
-              {/* Show password error message */}
+              {passwordError && <p className="text-red-500">{passwordError}</p>}
+              {captchaError && (
+                <p className="text-red-500">{captchaError}</p>
+              )}{" "}
+              {/* Show captcha error message */}
+              <ReCAPTCHA
+                sitekey="6LfEpP0pAAAAAK0UMKQ44VdN6D-uC1WvnJBNI0mn"
+                onChange={handleCaptchaChange}
+              />
               <FormAction
                 handleSubmit={handleSubmit}
                 text="Signup"
