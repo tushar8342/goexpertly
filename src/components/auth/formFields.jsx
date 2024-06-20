@@ -52,6 +52,7 @@ const signupFields = [
     isRequired: true,
     placeholder: "Email address",
   },
+
   {
     labelText: "Password",
     labelFor: "password",
@@ -62,6 +63,17 @@ const signupFields = [
     isRequired: true,
     placeholder: "Password",
   },
+  {
+    labelText: "Password",
+    labelFor: "password",
+    id: "passwordagain",
+    name: "passwordagain",
+    type: "password",
+    autoComplete: "current-password",
+    isRequired: true,
+    placeholder: "Password again",
+  },
+  
 ];
 const ForgotPasswordFields = [
   {

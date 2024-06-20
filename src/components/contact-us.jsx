@@ -31,13 +31,16 @@ function ContactUs() {
     setError(null);
 
     try {
-      const response = await fetch("https://send.com/spi", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://api.goexpertly.com/users/contactus",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         const errorResponse = await response.json();

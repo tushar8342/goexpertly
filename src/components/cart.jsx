@@ -16,6 +16,7 @@ function Cart() {
   const [loading, setLoading] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [discountedAmount, setDiscountedAmount] = useState(null);
+  const [promoMessage, setPromoMessage] = useState("");
 
   const { token } = useAuth();
   const navigate = useNavigate(); // Initialize useNavigate
@@ -28,12 +29,17 @@ function Cart() {
   } = useCartContext();
 
   const applyPromoCode = () => {
+    if (!promoCode) return;
     if (promoCode === "SUMMER2024") {
       const discount = total_amount * 0.2;
       setDiscountedAmount(total_amount - discount);
+      setPromoMessage(
+        "Promo code applied successfully! 20% discount is applicable."
+      );
       toast.success("Promo code applied successfully!");
     } else {
-      toast.error("No promo code present");
+      setPromoMessage("");
+      toast.error("Invalid promo code");
     }
   };
 
@@ -146,6 +152,7 @@ function Cart() {
                   })}
                 </div>
                 <div className="promo-code-section">
+                  {promoMessage && <p>{promoMessage}</p>}
                   <input
                     type="text"
                     placeholder="Enter promo code"
@@ -213,6 +220,7 @@ const CartWrapper = styled.div`
     .promo-code-section {
       margin-top: 20px;
       display: flex;
+      flex-direction: column;
       gap: 10px;
 
       input {
@@ -234,6 +242,11 @@ const CartWrapper = styled.div`
         &:hover {
           background-color: #45a049;
         }
+      }
+
+      p {
+        color: green;
+        font-size: 14px;
       }
     }
     .cart-total-value {
