@@ -194,10 +194,18 @@ function Header() {
                   <ul className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
                     <li>
                       <Link
-                        // to="/profile"
+                        to="/profile"
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                       >
                         Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/myOrders"
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      >
+                        Orders
                       </Link>
                     </li>
                     <li>
