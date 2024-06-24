@@ -61,7 +61,7 @@ function Cart() {
 
       const body = {
         cartItems,
-        couponCode: promoCode,
+        couponCode: promoCode ? promoCode : "SUMMER2024",
       };
       // console.log("body:", body);
 
@@ -138,7 +138,7 @@ function Cart() {
                     className="cart-clear-btn flex fs-15 fw-6 text"
                     onClick={() => clearCart()}
                   >
-                    <MdClear className="text-pink" />
+                    <MdClear className="text-pink ml-4 mt-1" />
                     <span className="d-inline-block text-pink ml-2">
                       Clear All
                     </span>

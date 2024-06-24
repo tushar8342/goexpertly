@@ -36,11 +36,14 @@ function Login() {
         body: JSON.stringify(loginState),
       });
       const res = await response.json();
+      console.log(res);
       if (response.ok) {
         setUser(res.userId);
         setToken(res.token);
         localStorage.setItem("user", res.userId);
         localStorage.setItem("site", res.token);
+        localStorage.setItem("username", res?.fullName);
+
         toast.success("Login successful!");
         navigate("/"); // Navigate to home page
       } else {

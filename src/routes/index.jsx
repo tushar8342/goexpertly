@@ -19,6 +19,9 @@ import Cart from "../components/cart";
 import SingleTrainingDetail from "../components/SingleTrainingDetail";
 import PaymentSuccess from "../components/payment-success";
 import PaymentCancel from "../components/payment-cancel";
+import Profile from "../components/profile";
+import MyOrders from "../components/myOrders";
+
 
 const AllRoutes = () => {
   return (
@@ -41,6 +44,12 @@ const AllRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/payment-success/:paramsid" element={<PaymentSuccess />} />
       <Route path="/payment-cancel" element={<PaymentCancel />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/myOrders" element={<MyOrders />} />
+
+
+      
+      profile
     </Routes>
   );
 };

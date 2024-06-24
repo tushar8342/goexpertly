@@ -65,6 +65,7 @@ function Signup() {
         body: JSON.stringify(signupState),
       });
       const data = await response.json();
+      console.log(data);
       // Check response from backend and show appropriate toast message
       if (response.ok) {
         setUser(data.newUser.id);
