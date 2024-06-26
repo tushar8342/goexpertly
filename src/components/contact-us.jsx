@@ -32,7 +32,7 @@ function ContactUs() {
 
     try {
       const response = await fetch(
-        "https://api.goexpertly.com/users/contactus",
+        `${process.env.REACT_APP_API_URL}/users/contactus`,
         {
           method: "POST",
           headers: {

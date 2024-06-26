@@ -13,7 +13,7 @@ function MyOrders() {
   useEffect(() => {
     if (token && user) {
       axios
-        .get(`https://api.goexpertly.com/users/${user}`, {
+        .get(`${process.env.REACT_APP_API_URL}/users/${user}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

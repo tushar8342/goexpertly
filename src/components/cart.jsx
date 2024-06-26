@@ -19,8 +19,7 @@ function Cart() {
   const [promoMessage, setPromoMessage] = useState("");
 
   const { token } = useAuth();
-  const navigate = useNavigate(); // Initialize useNavigate
-  // console.log("token:", token);
+  const navigate = useNavigate();
   const {
     cart: cartItems,
     total_items,
@@ -56,12 +55,12 @@ function Cart() {
     setLoading(true);
     try {
       const stripe = await loadStripe(
-        "pk_test_51PBO6KRq04FSuQPh7coRkyBFJTLAbhyuTxQEJ0H7hApVX3LZFRt7OeC8Dnf3UKi7OdUw4wpffFcOYYRRcCgs6fEI00qUyBD1VO"
+        `${process.env.REACT_APP_PUBLISHABLE_KEY}`
       );
 
       const body = {
         cartItems,
-        couponCode: promoCode ? promoCode : "SUMMER2024",
+        couponCode: promoCode ? promoCode : "",
       };
       // console.log("body:", body);
 
@@ -70,11 +69,14 @@ function Cart() {
         Authorization: `Bearer ${token}`, // Add the token to the Authorization header
       };
 
-      const response = await fetch("https://api.goexpertly.com/users/enroll", {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/users/enroll`,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
 
       if (!response.ok) {
         toast.error("Network response was not ok");

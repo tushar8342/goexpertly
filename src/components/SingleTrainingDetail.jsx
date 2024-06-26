@@ -44,7 +44,6 @@ const SingleTrainingDetail = () => {
     // content,
     imageSrc,
   } = single_course;
-
   return (
     <Layout>
       <SingleCourseWrapper>
@@ -118,6 +117,7 @@ const SingleTrainingDetail = () => {
                   imageSrc,
                   title,
                   instructors,
+                  price,
                   discountedPrice
                   // category
                 )

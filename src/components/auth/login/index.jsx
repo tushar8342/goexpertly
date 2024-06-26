@@ -28,15 +28,18 @@ function Login() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("https://api.goexpertly.com/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginState),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginState),
+        }
+      );
       const res = await response.json();
-      console.log(res);
+      // console.log(res);
       if (response.ok) {
         setUser(res.userId);
         setToken(res.token);

@@ -57,15 +57,18 @@ function Signup() {
 
   const createAccount = async () => {
     try {
-      const response = await fetch("https://api.goexpertly.com/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signupState),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/users/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signupState),
+        }
+      );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       // Check response from backend and show appropriate toast message
       if (response.ok) {
         setUser(data.newUser.id);

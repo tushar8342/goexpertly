@@ -18,7 +18,7 @@ export const CoursesProvider = ({ children }) => {
   const fetchCourse = async () => {
     try {
       const response = await axios.get(
-        "https://api.goexpertly.com/admin/courses"
+        `${process.env.REACT_APP_API_URL}/admin/courses`
       );
       dispatch({ type: GET_COURSES, payload: response.data });
     } catch (error) {
@@ -29,7 +29,7 @@ export const CoursesProvider = ({ children }) => {
   const fetchSingleCourse = async (id) => {
     try {
       const Coursedata = await axios.get(
-        "https://api.goexpertly.com/admin/courses"
+        `${process.env.REACT_APP_API_URL}/admin/courses`
       );
       // console.log("Coursedata:", Coursedata);
 

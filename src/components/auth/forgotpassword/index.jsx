@@ -25,7 +25,7 @@ function ForgotPassword() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://api.goexpertly.com/users/reset-password",
+        `${process.env.REACT_APP_API_URL}/users/reset-password`,
         {
           method: "POST",
           headers: {
