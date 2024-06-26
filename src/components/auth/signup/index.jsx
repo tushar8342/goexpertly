@@ -58,7 +58,7 @@ function Signup() {
   const createAccount = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/signup`,
+        `https://api.goexpertly.com/users/signup`,
         {
           method: "POST",
           headers: {

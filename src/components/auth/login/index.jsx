@@ -29,7 +29,7 @@ function Login() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/login`,
+        `https://api.goexpertly.com/users/login`,
         {
           method: "POST",
           headers: {

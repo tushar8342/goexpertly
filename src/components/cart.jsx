@@ -55,7 +55,7 @@ function Cart() {
     setLoading(true);
     try {
       const stripe = await loadStripe(
-        `${process.env.REACT_APP_PUBLISHABLE_KEY}`
+        `pk_live_51PBO6KRq04FSuQPhBC5MEWxXDGMTnAaMtygmV7iVc1LQmKfteRLEK8ABqZH1M6tPY6vkRMxpEfOz9s1dXkpLLHw4001vzhBRh3`
       );
 
       const body = {
@@ -69,14 +69,11 @@ function Cart() {
         Authorization: `Bearer ${token}`, // Add the token to the Authorization header
       };
 
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/enroll`,
-        {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`https://api.goexpertly.com/users/enroll`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      });
 
       if (!response.ok) {
         toast.error("Network response was not ok");

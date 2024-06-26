@@ -11,7 +11,7 @@ function Profile() {
   useEffect(() => {
     if (token && user) {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/users/${user}`, {
+        .get(`https://api.goexpertly.com/users/${user}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
