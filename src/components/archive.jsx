@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import { useCoursesContext } from "../context/courses_context";
 import { Link } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 
 import {
   MDBContainer,
@@ -16,14 +17,38 @@ import {
 } from "mdb-react-ui-kit";
 function Archive() {
   const { courses } = useCoursesContext();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (courses && courses.length > 0) {
+      setLoading(false);
+    }
+  }, [courses]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={50}
+          width={50}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
   return (
     <Layout>
       <MDBContainer fluid>
-        {courses.map((courses) => (
+        {courses?.map((courses) => (
           <MDBRow
             className="justify-content-center mb-3"
-            key={courses.courseID}
+            key={courses?.courseID}
           >
             <MDBCol md="12" xl="10">
               <MDBCard className="shadow-0 border rounded-3">
@@ -61,11 +86,11 @@ function Archive() {
                         className="bg-image rounded hover-zoom hover-overlay"
                       >
                         <MDBCardImage
-                          src={courses.imageSrc}
+                          src={courses?.imageSrc}
                           fluid
                           className="w-100"
                         />
-                        <a href={courses.detailsLink}>
+                        <a href={courses?.detailsLink}>
                           <div
                             className="mask"
                             style={{
@@ -77,7 +102,7 @@ function Archive() {
                     </MDBCol>
 
                     <MDBCol md="6">
-                      <h5 className="text-blue-500">{courses.title}</h5>
+                      <h5 className="text-blue-500">{courses?.title}</h5>
                       {/* <div className="d-flex flex-row">
                         <div className="text-danger mb-1 me-2">
                           {[...Array(product.rating)].map((_, index) => (
@@ -98,9 +123,9 @@ function Archive() {
                       </div> */}
                       <div className="mt-1 mb-0 text-muted small">
                         <span> Name: </span>
-                        <span>{courses.instructors}</span>
+                        <span>{courses?.instructors?.replace(/"/g, "")}</span>
                         <span className="ml-4"> Duration : </span>
-                        <span>{courses.duration}</span>
+                        <span>{courses?.duration}</span>
                         <br />
                         {/* <span className=""> ID : </span> */}
 
@@ -109,7 +134,7 @@ function Archive() {
                       <div className="mb-2 text-muted small"></div>
 
                       {/* <p className="text-truncate mb-4 mb-md-0"> */}
-                      <p className=" mb-4 mb-md-0">{courses.description}</p>
+                      <p className=" mb-4 mb-md-0">{courses?.description}</p>
                     </MDBCol>
                     <MDBCol
                       md="6"
@@ -117,15 +142,15 @@ function Archive() {
                       className="border-sm-start-none border-start"
                     >
                       <div className="d-flex flex-row align-items-center mb-1">
-                        <h4 className="mb-1 me-1">${courses.price}</h4>
+                        <h4 className="mb-1 me-1">${courses?.price}</h4>
                         <span className="text-danger">
-                          <s>${courses.discountedPrice}</s>
+                          <s>${courses?.discountedPrice}</s>
                         </span>
                       </div>
                       {/* <h6 className="text-success">Free shipping</h6> */}
                       <div className="d-flex flex-column mt-4">
                         <Link
-                          to={`/training/${courses.courseID}`}
+                          to={`/training/${courses?.courseID}`}
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >
                           Details

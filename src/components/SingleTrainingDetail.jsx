@@ -1,36 +1,46 @@
-// import React from "react";
-
-// function SingleTrainingDetail() {
-//   return <div>SingleTrainingDetail</div>;
-// }
-
-// export default SingleTrainingDetail;
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./layout";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useCoursesContext } from "../context/courses_context";
-// import StarRating from "../components/StarRating";
-// import { MdInfo } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
-// import { FaShoppingCart } from "react-icons/fa";
 import { RiClosedCaptioningFill } from "react-icons/ri";
-// import { BiCheck } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/cart_context";
+import { Oval } from "react-loader-spinner";
 
 const SingleTrainingDetail = () => {
   const { id } = useParams();
-  // console.log("id:", id);
   const { fetchSingleCourse, single_course } = useCoursesContext();
-
   const { addToCart } = useCartContext();
+  const [loading, setLoading] = useState(true);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    fetchSingleCourse(id);
+    const fetchData = async () => {
+      await fetchSingleCourse(id);
+      setLoading(false);
+    };
+    fetchData();
   }, [id,fetchSingleCourse]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={50}
+          width={50}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
 
   const {
     courseID,
@@ -44,6 +54,7 @@ const SingleTrainingDetail = () => {
     // content,
     imageSrc,
   } = single_course;
+
   return (
     <Layout>
       <SingleCourseWrapper>
@@ -72,8 +83,10 @@ const SingleTrainingDetail = () => {
               <ul className="course-info">
                 <li>
                   <span className="fs-14">
-                    Created by{" "}
-                    <span className="fw-6 opacity-08">{instructors}</span>
+                    Created by:{" "}
+                    <span className="fw-6 opacity-08">
+                      {instructors?.replace(/"/g, "")}
+                    </span>
                   </span>
                 </li>
                 {/* <li className="flex">

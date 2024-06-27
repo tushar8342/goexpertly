@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer, useEffect, useCallback } from "react";
 import { GET_CATEGORIES, GET_COURSES, GET_SINGLE_COURSE } from "../actions";
 import reducer from "../reducers/courses_reducer";
 import courses from "../utils/data";
@@ -26,21 +26,19 @@ export const CoursesProvider = ({ children }) => {
     }
   };
 
-  const fetchSingleCourse = async (id) => {
+  const fetchSingleCourse = useCallback(async (id) => {
     try {
-      const Coursedata = await axios.get(
-        `https://api.goexpertly.com/admin/courses`
-      );
-      // console.log("Coursedata:", Coursedata);
-
-      const singleCourse = Coursedata.data.find(
-        (course) => course.courseID === Number(id)
-      );
-      dispatch({ type: GET_SINGLE_COURSE, payload: singleCourse });
+      const existingCourse = state.courses.find(course => course.courseID === Number(id));
+      if (existingCourse) {
+        dispatch({ type: GET_SINGLE_COURSE, payload: existingCourse });
+      } else {
+        const response = await axios.get(`https://api.goexpertly.com/admin/courses/${id}`);
+        dispatch({ type: GET_SINGLE_COURSE, payload: response.data });
+      }
     } catch (error) {
-      console.error("Error fetching courses:", error);
+      console.error("Error fetching single course:", error);
     }
-  };
+  }, [state.courses]);
 
   const fetchCategories = () => {
     const categories = [...new Set(courses.map((item) => item.category))];

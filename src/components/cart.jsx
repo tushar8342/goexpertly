@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
 import Layout from "./layout";
 import styled from "styled-components";
 import { MdClear } from "react-icons/md";
@@ -17,6 +17,7 @@ function Cart() {
   const [promoCode, setPromoCode] = useState("");
   const [discountedAmount, setDiscountedAmount] = useState(null);
   const [promoMessage, setPromoMessage] = useState("");
+  const [promoLoading, setPromoLoading] = useState(false);
 
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -27,27 +28,48 @@ function Cart() {
     clearCart,
   } = useCartContext();
 
-  const applyPromoCode = () => {
+  const applyPromoCode = async () => {
+    setPromoMessage("");
     if (!promoCode) return;
-    if (promoCode === "SUMMER2024") {
-      const discount = total_amount * 0.2;
-      setDiscountedAmount(total_amount - discount);
+    setPromoLoading(true);
+    try {
+      const response = await fetch(
+        "https://api.goexpertly.com/users/coupons/apply",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ cartItems, code: promoCode }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to apply promo code");
+      }
+
+      const couponData = await response.json();
+      const { discountValue, finalPrice } = couponData;
+      console.log(finalPrice);
+
+      // const discount = total_amount * (discountValue / 100);
+      setDiscountedAmount(finalPrice);
       setPromoMessage(
-        "Promo code applied successfully! 20% discount is applicable."
+        `Promo code applied successfully!  ${discountValue}%  discount is applicable.`
       );
       toast.success("Promo code applied successfully!");
-    } else {
-      setPromoMessage("");
+    } catch (error) {
+      setDiscountedAmount(null);
+      console.error("Error applying promo code:", error);
       toast.error("Invalid promo code");
+    } finally {
+      setPromoLoading(false);
     }
   };
 
   const makePayment = async () => {
     if (!token) {
-      // toast.error("You need to login first to checkout!", {
-      //   autoClose: 1000,
-      //   onClose: () => navigate("/signup"),
-      // });
       navigate("/signup");
       return;
     }
@@ -62,11 +84,10 @@ function Cart() {
         cartItems,
         couponCode: promoCode ? promoCode : "",
       };
-      // console.log("body:", body);
 
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+        Authorization: `Bearer ${token}`,
       };
 
       const response = await fetch(`https://api.goexpertly.com/users/enroll`, {
@@ -90,7 +111,7 @@ function Cart() {
         console.error(result.error.message);
       }
     } catch (error) {
-      toast.error(error);
+      toast.error("Error during payment process");
       console.error("Error during payment process:", error);
     } finally {
       setLoading(false);
@@ -125,7 +146,6 @@ function Cart() {
               <h3>Shopping Cart</h3>
             </div>
             <div className="cart-grid grid">
-              {/* card grid left */}
               <div className="cart-grid-left">
                 <div className="flex flex-wrap flex-between">
                   <div className="cart-count-info">
@@ -144,11 +164,9 @@ function Cart() {
                   </button>
                 </div>
                 <div className="cart-items-list grid">
-                  {cartItems.map((cartItem) => {
-                    return (
-                      <CartItem key={cartItem.courseID} cartItem={cartItem} />
-                    );
-                  })}
+                  {cartItems.map((cartItem) => (
+                    <CartItem key={cartItem.courseID} cartItem={cartItem} />
+                  ))}
                 </div>
                 <div className="promo-code-section">
                   {promoMessage && <p>{promoMessage}</p>}
@@ -158,19 +176,23 @@ function Cart() {
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
                   />
-                  <button onClick={applyPromoCode}>Apply Promo Code</button>
+                  <button onClick={applyPromoCode} disabled={promoLoading}>
+                    {promoLoading ? (
+                      <ClipLoader size={24} color={"#ffffff"} />
+                    ) : (
+                      "Apply Promo Code"
+                    )}
+                  </button>
                 </div>
               </div>
-              {/* end of grid left */}
-              {/* cart grid right */}
               <div className="cart-grid-right">
                 <div className="cart-total">
                   <span className="d-block fs-18 fw-6">Total:</span>
                   <div className="cart-total-value fw-8">
                     $
-                    {discountedAmount !== null
-                      ? Math.floor(discountedAmount).toFixed(2)
-                      : Math.floor(total_amount).toFixed(2)}
+                    {discountedAmount
+                      ? discountedAmount
+                      : total_amount?.toFixed(2)}
                   </div>
                   <button
                     type="button"
@@ -194,7 +216,6 @@ function Cart() {
     </div>
   );
 }
-
 const CartWrapper = styled.div`
   padding: 30px 0;
   .card-pg-title {
