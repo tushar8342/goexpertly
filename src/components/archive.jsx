@@ -142,10 +142,18 @@ function Archive() {
                       className="border-sm-start-none border-start"
                     >
                       <div className="d-flex flex-row align-items-center mb-1">
-                        <h4 className="mb-1 me-1">${courses?.price}</h4>
-                        <span className="text-danger">
-                          <s>${courses?.discountedPrice}</s>
-                        </span>
+                        {courses?.discountedPrice ? (
+                          <>
+                            <h4 className="mb-1 me-1">
+                              ${courses.discountedPrice}
+                            </h4>
+                            <span className="text-danger">
+                              <s>${courses.price}</s>
+                            </span>
+                          </>
+                        ) : (
+                          <h4 className="mb-1 me-1">${courses.price}</h4>
+                        )}
                       </div>
                       {/* <h6 className="text-success">Free shipping</h6> */}
                       <div className="d-flex flex-column mt-4">

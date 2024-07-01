@@ -34,8 +34,8 @@ export const CartProvider = ({ children }) => {
     course_name,
     creator,
     discounted_price,
-    category,
     price
+    // category,
   ) => {
     dispatch({
       type: ADD_TO_CART,
@@ -45,8 +45,8 @@ export const CartProvider = ({ children }) => {
         course_name,
         creator,
         discounted_price,
-        category,
         price,
+        // category,
       },
     });
   };

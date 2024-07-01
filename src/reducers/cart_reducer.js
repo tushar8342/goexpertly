@@ -33,9 +33,11 @@ const cart_reducer = (state, action) => {
 
   if (action.type === GET_CART_TOTAL) {
     const total_amount = state.cart.reduce((total, cartItem) => {
-      total += Number(cartItem.discounted_price);
+      const priceToAdd = cartItem?.discounted_price ?? cartItem?.price;
+      total += Number(priceToAdd);
       return total;
     }, 0);
+
     return {
       ...state,
       total_items: state.cart.length,

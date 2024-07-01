@@ -21,7 +21,7 @@ const SingleTrainingDetail = () => {
       setLoading(false);
     };
     fetchData();
-  }, [id,fetchSingleCourse]);
+  }, [id, fetchSingleCourse]);
 
   if (loading) {
     return (
@@ -54,6 +54,7 @@ const SingleTrainingDetail = () => {
     // content,
     imageSrc,
   } = single_course;
+  // console.log('single_course:', single_course)
 
   return (
     <Layout>
@@ -116,8 +117,16 @@ const SingleTrainingDetail = () => {
 
             <div className="course-foot">
               <div className="course-price">
-                <span className="new-price fs-26 fw-8">${price}</span>
-                <span className="old-price fs-26 fw-6">${discountedPrice}</span>
+                {discountedPrice ? (
+                  <>
+                    <span className="new-price fs-26 fw-8">
+                      ${discountedPrice}
+                    </span>
+                    <span className="old-price fs-26 fw-6">${price}</span>
+                  </>
+                ) : (
+                  <span className="new-price fs-26 fw-8">${price}</span>
+                )}
               </div>
             </div>
 
@@ -130,8 +139,8 @@ const SingleTrainingDetail = () => {
                   imageSrc,
                   title,
                   instructors,
-                  price,
-                  discountedPrice
+                  discountedPrice,
+                  price
                   // category
                 )
               }

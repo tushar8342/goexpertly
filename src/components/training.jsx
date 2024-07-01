@@ -57,7 +57,10 @@ function Training() {
     <Layout>
       <MDBContainer fluid>
         {courses?.map((course) => (
-          <MDBRow className="justify-content-center mb-3" key={course?.courseID}>
+          <MDBRow
+            className="justify-content-center mb-3"
+            key={course?.courseID}
+          >
             <MDBCol md="12" xl="10">
               <MDBCard className="shadow-0 border rounded-3">
                 <MDBCardBody>
@@ -145,10 +148,18 @@ function Training() {
                       className="border-sm-start-none border-start"
                     >
                       <div className="d-flex flex-row align-items-center mb-1">
-                        <h4 className="mb-1 me-1">${course?.price}</h4>
-                        <span className="text-danger">
-                          <s>${course?.discountedPrice}</s>
-                        </span>
+                        {course?.discountedPrice ? (
+                          <>
+                            <h4 className="mb-1 me-1">
+                              ${course.discountedPrice}
+                            </h4>
+                            <span className="text-danger">
+                              <s>${course.price}</s>
+                            </span>
+                          </>
+                        ) : (
+                          <h4 className="mb-1 me-1">${course.price}</h4>
+                        )}
                       </div>
                       <div className="d-flex flex-column mt-4">
                         <Link

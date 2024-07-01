@@ -51,7 +51,7 @@ function Cart() {
 
       const couponData = await response.json();
       const { discountValue, finalPrice } = couponData;
-      console.log(finalPrice);
+      // console.log(finalPrice);
 
       // const discount = total_amount * (discountValue / 100);
       setDiscountedAmount(finalPrice);

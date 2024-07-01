@@ -123,16 +123,6 @@ function Footer() {
                   Terms of Use{" "}
                 </Link>
               </li>
-
-              <li>
-                <Link
-                  to="/subscribe"
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
-                >
-                  {" "}
-                  Subscribe{" "}
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -163,7 +153,7 @@ function Footer() {
                 </Link>
               </li> */}
 
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   title=""
@@ -172,7 +162,7 @@ function Footer() {
                   {" "}
                   Terms & Conditions{" "}
                 </Link>
-              </li>
+              </li> */}
 
               <li>
                 <Link
@@ -181,6 +171,15 @@ function Footer() {
                 >
                   {" "}
                   Privacy Policy{" "}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/subscribe"
+                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Subscribe{" "}
                 </Link>
               </li>
             </ul>
