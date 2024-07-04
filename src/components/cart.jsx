@@ -41,7 +41,7 @@ function Cart() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ cartItems, code: promoCode }),
+          body: JSON.stringify({ cartItems, code: promoCode, siteId: 1 }),
         }
       );
 
