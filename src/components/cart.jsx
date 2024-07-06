@@ -83,6 +83,7 @@ function Cart() {
       const body = {
         cartItems,
         couponCode: promoCode ? promoCode : "",
+        siteId: 1,
       };
 
       const headers = {
