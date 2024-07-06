@@ -18,27 +18,39 @@ export const CoursesProvider = ({ children }) => {
   const fetchCourse = async () => {
     try {
       const response = await axios.get(
-        `https://api.goexpertly.com/admin/courses`
+        "https://api.goexpertly.com/admin/courses"
       );
-      dispatch({ type: GET_COURSES, payload: response.data });
+      const filteredCourses = response.data.filter((course) =>
+        course.Sites.some(
+          (site) => site.name === "goexpertly" || site.siteId === 1
+        )
+      );
+      dispatch({ type: GET_COURSES, payload: filteredCourses });
     } catch (error) {
       console.error("Error fetching courses:", error);
     }
   };
 
-  const fetchSingleCourse = useCallback(async (id) => {
-    try {
-      const existingCourse = state.courses.find(course => course.courseID === Number(id));
-      if (existingCourse) {
-        dispatch({ type: GET_SINGLE_COURSE, payload: existingCourse });
-      } else {
-        const response = await axios.get(`https://api.goexpertly.com/admin/courses/${id}`);
-        dispatch({ type: GET_SINGLE_COURSE, payload: response.data });
+  const fetchSingleCourse = useCallback(
+    async (id) => {
+      try {
+        const existingCourse = state.courses.find(
+          (course) => course.courseID === Number(id)
+        );
+        if (existingCourse) {
+          dispatch({ type: GET_SINGLE_COURSE, payload: existingCourse });
+        } else {
+          const response = await axios.get(
+            `https://api.goexpertly.com/admin/courses/${id}`
+          );
+          dispatch({ type: GET_SINGLE_COURSE, payload: response.data });
+        }
+      } catch (error) {
+        console.error("Error fetching single course:", error);
       }
-    } catch (error) {
-      console.error("Error fetching single course:", error);
-    }
-  }, [state.courses]);
+    },
+    [state.courses]
+  );
 
   const fetchCategories = () => {
     const categories = [...new Set(courses.map((item) => item.category))];
