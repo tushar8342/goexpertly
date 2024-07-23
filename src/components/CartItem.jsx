@@ -5,7 +5,7 @@ import { useCartContext } from "../context/cart_context";
 
 const CartItem = ({ cartItem }) => {
   const { removeFromCart } = useCartContext();
-  // console.log(cartItem);
+  console.log(cartItem);
 
   return (
     <CartItemWrapper className="grid">
@@ -18,10 +18,10 @@ const CartItem = ({ cartItem }) => {
           By : {cartItem.creator.replace(/"/g, "")}
         </span>
         <div className="fw-7 text-purple">
-          $
-          {cartItem.discounted_price
+          ${cartItem.price}
+          {/* {cartItem.discounted_price
             ? cartItem.discounted_price
-            : cartItem.price}
+            : cartItem.price} */}
         </div>
         {/* <div className="cart-item-category bg-orange fs-12 d-inline-block text-capitalize text-white fw-7">
           {cartItem.category}

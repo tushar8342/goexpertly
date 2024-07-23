@@ -14,6 +14,7 @@ const SingleTrainingDetail = () => {
   const { fetchSingleCourse, single_course } = useCoursesContext();
   const { addToCart } = useCartContext();
   const [loading, setLoading] = useState(true);
+  const [selectedPricing, setSelectedPricing] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +23,12 @@ const SingleTrainingDetail = () => {
     };
     fetchData();
   }, [id, fetchSingleCourse]);
+
+  useEffect(() => {
+    if (single_course && single_course.Pricings) {
+      setSelectedPricing(single_course.Pricings[0]);
+    }
+  }, [single_course]);
 
   if (loading) {
     return (
@@ -48,13 +55,20 @@ const SingleTrainingDetail = () => {
     instructors,
     // duration,
     price,
-    discountedPrice,
+    // discountedPrice,
     description,
     what_you_will_learn,
     // content,
     imageSrc,
+    Pricings,
   } = single_course;
-  // console.log('single_course:', single_course)
+
+  const handlePricingChange = (e) => {
+    const pricing = Pricings.find(
+      (pricing) => pricing.id === parseInt(e.target.value)
+    );
+    setSelectedPricing(pricing);
+  };
 
   return (
     <Layout>
@@ -71,16 +85,14 @@ const SingleTrainingDetail = () => {
             <div className="course-head">
               <div className="font-semibold text-2xl">{title}</div>
             </div>
-
             <div className="course-body">
-              <p className="course-para ">{description}</p>
+              <p className="course-para">{description}</p>
               {/* <div className="course-rating flex">
               <span className="rating-star-val fw-8 fs-16">{rating_star}</span>
               <StarRating rating_star={rating_star} />
               <span className="rating-count fw-5 fs-14">({rating_count})</span>
               <span className="students-count fs-14">{students}</span>
             </div> */}
-
               <ul className="course-info">
                 <li>
                   <span className="fs-14">
@@ -114,22 +126,36 @@ const SingleTrainingDetail = () => {
                 </li>
               </ul>
             </div>
-
             <div className="course-foot">
               <div className="course-price">
-                {discountedPrice ? (
-                  <>
-                    <span className="new-price fs-26 fw-8">
-                      ${discountedPrice}
-                    </span>
-                    <span className="old-price fs-26 fw-6">${price}</span>
-                  </>
-                ) : (
-                  <span className="new-price fs-26 fw-8">${price}</span>
-                )}
+                <span className="new-price fs-26 fw-8">
+                  ${selectedPricing ? selectedPricing.price : price}
+                </span>
               </div>
             </div>
-
+            {Pricings?.length >= 1 && (
+              <div className="course-pricing">
+                <label
+                  htmlFor="sessionType"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Session Type
+                </label>
+                <select
+                  id="sessionType"
+                  name="sessionType"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                  onChange={handlePricingChange}
+                  value={selectedPricing ? selectedPricing.id : ""}
+                >
+                  {Pricings?.map((pricing) => (
+                    <option key={pricing.id} value={pricing.id}>
+                      {pricing.sessionType} - ${pricing.price}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
             <Link
               to="/cart"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
@@ -139,15 +165,15 @@ const SingleTrainingDetail = () => {
                   imageSrc,
                   title,
                   instructors,
-                  discountedPrice,
-                  price
+                  selectedPricing ? selectedPricing.price : price
+                  // discountedPrice
                   // category
+                  // price
                 )
               }
             >
               Add to Cart
             </Link>
-
             {/* <div className="course-btn">
               <Link
                 to="/cart"
@@ -168,7 +194,6 @@ const SingleTrainingDetail = () => {
             </div> */}
           </div>
         </div>
-
         {/* <div className="course-full bg-white text-dark">
         <div className="course-learn mx-auto">
           <div className="course-sc-title">What you'll learn</div>
@@ -203,12 +228,12 @@ const SingleTrainingDetail = () => {
       </div> */}
       </SingleCourseWrapper>
       <section className="bg-white dark:bg-gray-900">
-        <div className="container flex flex-col  px-4 py-12">
-          <h2 className="max-w-2xl  text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+        <div className="container flex flex-col px-4 py-12">
+          <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
             <span className="text-blue-500">Why Should You Attend : </span>
           </h2>
 
-          <p className=" mt-2  text-gray-500 dark:text-gray-300">
+          <p className="mt-2 text-gray-500 dark:text-gray-300">
             {what_you_will_learn}
           </p>
         </div>
@@ -216,7 +241,6 @@ const SingleTrainingDetail = () => {
     </Layout>
   );
 };
-
 const SingleCourseWrapper = styled.div`
   background: var(--clr-dark);
   color: var(--clr-white);

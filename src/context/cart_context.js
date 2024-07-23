@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
     image,
     course_name,
     creator,
-    discounted_price,
+    // discounted_price,
     price
     // category,
   ) => {
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
         image,
         course_name,
         creator,
-        discounted_price,
+        // discounted_price,
         price,
         // category,
       },
