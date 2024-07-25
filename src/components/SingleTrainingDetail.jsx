@@ -165,7 +165,8 @@ const SingleTrainingDetail = () => {
                   imageSrc,
                   title,
                   instructors,
-                  selectedPricing ? selectedPricing.price : price
+                  selectedPricing ? selectedPricing.price : price,
+                  selectedPricing
                   // discountedPrice
                   // category
                   // price

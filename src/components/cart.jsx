@@ -27,7 +27,7 @@ function Cart() {
     total_amount,
     clearCart,
   } = useCartContext();
-
+  console.log(cartItems);
   const applyPromoCode = async () => {
     setPromoMessage("");
     if (!promoCode) return;

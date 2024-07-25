@@ -8,7 +8,9 @@ import {
 const cart_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     const tempArr = state.cart.filter(
-      (item) => item.courseID === action.payload.courseID
+      (item) =>
+        item.courseID === action.payload.courseID &&
+        item.price === action.payload.price
     );
     if (tempArr.length < 1) {
       return {
