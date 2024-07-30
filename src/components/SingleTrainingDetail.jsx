@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useCoursesContext } from "../context/courses_context";
 import { TbWorld } from "react-icons/tb";
-import { RiClosedCaptioningFill } from "react-icons/ri";
+// import { RiClosedCaptioningFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/cart_context";
 import { Oval } from "react-loader-spinner";
@@ -73,18 +73,28 @@ const SingleTrainingDetail = () => {
     // target_companies,
     // target_association,
   } = single_course;
+
   const dateTime = new Date(webinarDate);
-  const formattedDateTime = dateTime.toLocaleString("en-US", {
-    weekday: "long", // "Monday"
-    year: "numeric", // "2024"
-    month: "long", // "August"
-    day: "numeric", // "1"
-    hour: "2-digit", // "12"
-    minute: "2-digit", // "00"
-    second: "2-digit", // "00"
-    hour12: true, // "AM/PM" format
+
+  const formattedDateTimeET = dateTime.toLocaleString("en-US", {
+    timeZone: "America/New_York",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
   });
-  // console.log(discountedPrice);
+
+  const formattedDateTimePT = dateTime.toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
   const handlePricingChange = (e) => {
     const pricing = Pricings.find(
       (pricing) => pricing.id === parseInt(e.target.value)
@@ -95,24 +105,23 @@ const SingleTrainingDetail = () => {
   return (
     <Layout>
       <SingleCourseWrapper>
-        <div className="course-intro mx-auto ">
-          {" "}
-          <div className="course-head">
-            <div className="font-semibold text-2xl">{title}</div>
-          </div>
-          <div className="course-body">
-            <p className="course-para text-white-important">
-              {description ? parse(description) : null}
-            </p>
-          </div>
-        </div>
-
         <div className="course-intro mx-auto grid">
           <div className="course-img flex justify-center items-center">
             <img className="w-2/4 h-auto" src={imageSrc} alt={imageSrc} />
           </div>
 
           <div className="course-details">
+            <div className="course-intro mx-auto ">
+              {" "}
+              <div className="course-head">
+                <div className="font-semibold text-2xl">{title}</div>
+              </div>
+              {/* <div className="course-body">
+            <p className="course-para text-white-important">
+              {description ? parse(description) : null}
+            </p>
+          </div> */}
+            </div>
             {/* <div className="course-category bg-white text-dark text-capitalize fw-6 fs-12 d-inline-block">
             {category}
           </div> */}
@@ -146,20 +155,21 @@ const SingleTrainingDetail = () => {
                 </span>
                 <span className="fs-14 course-info-txt fw-5">English </span>
               </li>
-              <li className="flex">
+              {/* <li className="flex">
                 <span>
                   <RiClosedCaptioningFill />
                 </span>
                 <span className="fs-14 course-info-txt fw-5">
                   English [Auto]
                 </span>
-              </li>
+              </li> */}
               <li className="flex">
                 <span>
                   <FaCalendarAlt className="text-white-500  " />
                 </span>
                 <span className="fs-14 course-info-txt fw-5">
-                  Date:- {formattedDateTime ? formattedDateTime : null}
+                  Date: {formattedDateTimeET?.replace("at", ", ")} ET /{" "}
+                  {formattedDateTimePT} PT
                 </span>
               </li>
               <li className="flex">
@@ -285,6 +295,17 @@ const SingleTrainingDetail = () => {
       </div> */}
       </SingleCourseWrapper>
       <section className="bg-white dark:bg-gray-900">
+        {description ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Description :</span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {description ? parse(description) : null}
+            </p>
+          </div>
+        ) : null}
         {why_register ? (
           <div className="container flex flex-col px-4 py-12">
             <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
@@ -315,9 +336,9 @@ const SingleTrainingDetail = () => {
               </span>
             </h2>
 
-            <p className="mt-2 text-gray-500 dark:text-gray-300">
+            <div className="mt-2 text-gray-500 dark:text-gray-300">
               {areas_covered ? parse(areas_covered) : null}
-            </p>
+            </div>
           </div>
         ) : null}
         {who_will_benefit ? (
@@ -381,8 +402,6 @@ const SingleCourseWrapper = styled.div`
     }
     .course-para {
       padding: 12px 0;
-      @apply text-white;
-      color: #fff !important;
     }
     .rating-star-val {
       margin-right: 7px;
