@@ -81,7 +81,7 @@ function MyOrders() {
                           <span className="dark:text-gray-400 text-gray-300">
                             Instructor:{" "}
                           </span>{" "}
-                          {course.instructors}
+                          {course.instructor}
                         </p>
                         <p className="text-sm dark:text-white leading-none text-gray-800">
                           <span className="dark:text-gray-400 text-gray-300">

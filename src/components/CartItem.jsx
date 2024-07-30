@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { FaTrashAlt } from "react-icons/fa";
-import { useCartContext } from "../context/cart_context";
+// import { FaTrashAlt } from "react-icons/fa";
+// import { useCartContext } from "../context/cart_context";
 
 const CartItem = ({ cartItem }) => {
-  const { removeFromCart } = useCartContext();
-  console.log(cartItem);
+  // const { removeFromCart } = useCartContext();
 
   return (
     <CartItemWrapper className="grid">
@@ -17,6 +16,12 @@ const CartItem = ({ cartItem }) => {
         <span className="cart-item-creator fs-13 opacity-09">
           By : {cartItem.creator.replace(/"/g, "")}
         </span>
+        {cartItem?.selectedPricing?.sessionType ? (
+          <p className="cart-item-creator fs-13 opacity-09">
+            Session :{cartItem?.selectedPricing?.sessionType}
+          </p>
+        ) : null}
+
         <div className="fw-7 text-purple">
           ${cartItem.price}
           {/* {cartItem.discounted_price
@@ -26,7 +31,7 @@ const CartItem = ({ cartItem }) => {
         {/* <div className="cart-item-category bg-orange fs-12 d-inline-block text-capitalize text-white fw-7">
           {cartItem.category}
         </div> */}
-        <br />
+        {/* <br />
         <button
           type="button"
           className="remove-btn fs-13 text-dark fw-6"
@@ -36,7 +41,7 @@ const CartItem = ({ cartItem }) => {
           <span>
             <FaTrashAlt />
           </span>
-        </button>
+        </button> */}
       </div>
     </CartItemWrapper>
   );

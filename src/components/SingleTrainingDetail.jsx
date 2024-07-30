@@ -8,6 +8,8 @@ import { RiClosedCaptioningFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/cart_context";
 import { Oval } from "react-loader-spinner";
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import parse from "html-react-parser";
 
 const SingleTrainingDetail = () => {
   const { id } = useParams();
@@ -52,17 +54,37 @@ const SingleTrainingDetail = () => {
   const {
     courseID,
     title,
-    instructors,
+    instructor,
     // duration,
-    price,
-    // discountedPrice,
+    // price,
+    discountedPrice,
     description,
     what_you_will_learn,
     // content,
     imageSrc,
     Pricings,
+    webinarDate,
+    duration,
+    areas_covered,
+    who_will_benefit,
+    instructor_profile,
+    why_register,
+    background,
+    // target_companies,
+    // target_association,
   } = single_course;
-
+  const dateTime = new Date(webinarDate);
+  const formattedDateTime = dateTime.toLocaleString("en-US", {
+    weekday: "long", // "Monday"
+    year: "numeric", // "2024"
+    month: "long", // "August"
+    day: "numeric", // "1"
+    hour: "2-digit", // "12"
+    minute: "2-digit", // "00"
+    second: "2-digit", // "00"
+    hour12: true, // "AM/PM" format
+  });
+  // console.log(discountedPrice);
   const handlePricingChange = (e) => {
     const pricing = Pricings.find(
       (pricing) => pricing.id === parseInt(e.target.value)
@@ -73,36 +95,44 @@ const SingleTrainingDetail = () => {
   return (
     <Layout>
       <SingleCourseWrapper>
+        <div className="course-intro mx-auto ">
+          {" "}
+          <div className="course-head">
+            <div className="font-semibold text-2xl">{title}</div>
+          </div>
+          <div className="course-body">
+            <p className="course-para text-white-important">
+              {description ? parse(description) : null}
+            </p>
+          </div>
+        </div>
+
         <div className="course-intro mx-auto grid">
           <div className="course-img flex justify-center items-center">
-            <img className="w-3/4 h-auto" src={imageSrc} alt={imageSrc} />
+            <img className="w-2/4 h-auto" src={imageSrc} alt={imageSrc} />
           </div>
 
           <div className="course-details">
             {/* <div className="course-category bg-white text-dark text-capitalize fw-6 fs-12 d-inline-block">
             {category}
           </div> */}
-            <div className="course-head">
-              <div className="font-semibold text-2xl">{title}</div>
-            </div>
-            <div className="course-body">
-              <p className="course-para">{description}</p>
-              {/* <div className="course-rating flex">
+
+            {/* <div className="course-rating flex">
               <span className="rating-star-val fw-8 fs-16">{rating_star}</span>
               <StarRating rating_star={rating_star} />
               <span className="rating-count fw-5 fs-14">({rating_count})</span>
               <span className="students-count fs-14">{students}</span>
             </div> */}
-              <ul className="course-info">
-                <li>
-                  <span className="fs-14">
-                    Created by:{" "}
-                    <span className="fw-6 opacity-08">
-                      {instructors?.replace(/"/g, "")}
-                    </span>
+            <ul className="course-info">
+              <li>
+                <span className="fs-14">
+                  Created by:{" "}
+                  <span className="fw-6 opacity-08">
+                    {instructor?.replace(/"/g, "")}
                   </span>
-                </li>
-                {/* <li className="flex">
+                </span>
+              </li>
+              {/* <li className="flex">
                   <span>
                     <MdInfo />
                   </span>
@@ -110,27 +140,53 @@ const SingleTrainingDetail = () => {
                     Last updated 9/2015
                   </span>
                 </li> */}
-                <li className="flex">
-                  <span>
-                    <TbWorld />
-                  </span>
-                  <span className="fs-14 course-info-txt fw-5">English </span>
-                </li>
-                <li className="flex">
-                  <span>
-                    <RiClosedCaptioningFill />
-                  </span>
-                  <span className="fs-14 course-info-txt fw-5">
-                    English [Auto]
-                  </span>
-                </li>
-              </ul>
-            </div>
+              <li className="flex">
+                <span>
+                  <TbWorld />
+                </span>
+                <span className="fs-14 course-info-txt fw-5">English </span>
+              </li>
+              <li className="flex">
+                <span>
+                  <RiClosedCaptioningFill />
+                </span>
+                <span className="fs-14 course-info-txt fw-5">
+                  English [Auto]
+                </span>
+              </li>
+              <li className="flex">
+                <span>
+                  <FaCalendarAlt className="text-white-500  " />
+                </span>
+                <span className="fs-14 course-info-txt fw-5">
+                  Date:- {formattedDateTime ? formattedDateTime : null}
+                </span>
+              </li>
+              <li className="flex">
+                <span>
+                  <FaClock className="text-white-500  " />
+                </span>
+                <span className="fs-14 course-info-txt fw-5">
+                  Duration:- {duration ? duration : null}
+                </span>
+              </li>
+            </ul>
             <div className="course-foot">
               <div className="course-price">
-                <span className="new-price fs-26 fw-8">
-                  ${selectedPricing ? selectedPricing.price : price}
-                </span>
+                {selectedPricing ? (
+                  <span className="new-price fs-26 fw-8">
+                    $
+                    {selectedPricing
+                      ? selectedPricing.price
+                      : Pricings[0]?.price
+                      ? Pricings[0]?.price
+                      : discountedPrice}
+                  </span>
+                ) : (
+                  <span className="new-price fs-26 fw-8">
+                    ${discountedPrice}
+                  </span>
+                )}
               </div>
             </div>
             {Pricings?.length >= 1 && (
@@ -164,8 +220,8 @@ const SingleTrainingDetail = () => {
                   courseID,
                   imageSrc,
                   title,
-                  instructors,
-                  selectedPricing ? selectedPricing.price : price,
+                  instructor,
+                  selectedPricing ? selectedPricing.price : discountedPrice,
                   selectedPricing
                   // discountedPrice
                   // category
@@ -229,15 +285,74 @@ const SingleTrainingDetail = () => {
       </div> */}
       </SingleCourseWrapper>
       <section className="bg-white dark:bg-gray-900">
-        <div className="container flex flex-col px-4 py-12">
-          <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
-            <span className="text-blue-500">Why Should You Attend : </span>
-          </h2>
+        {why_register ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Why Register :</span>
+            </h2>
 
-          <p className="mt-2 text-gray-500 dark:text-gray-300">
-            {what_you_will_learn}
-          </p>
-        </div>
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {why_register ? parse(why_register) : null}
+            </p>
+          </div>
+        ) : null}
+        {what_you_will_learn ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Why Should You Attend : </span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {what_you_will_learn ? parse(what_you_will_learn) : null}
+            </p>
+          </div>
+        ) : null}
+        {areas_covered ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">
+                Areas Covered in the Webinar Session :
+              </span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {areas_covered ? parse(areas_covered) : null}
+            </p>
+          </div>
+        ) : null}
+        {who_will_benefit ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Who will benefit?</span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {who_will_benefit ? parse(who_will_benefit) : null}
+            </p>
+          </div>
+        ) : null}
+        {instructor_profile ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Instructor Profile :</span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {instructor_profile ? parse(instructor_profile) : null}
+            </p>
+          </div>
+        ) : null}
+        {background ? (
+          <div className="container flex flex-col px-4 py-12">
+            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+              <span className="text-blue-500">Background :</span>
+            </h2>
+
+            <p className="mt-2 text-gray-500 dark:text-gray-300">
+              {background ? parse(background) : null}
+            </p>
+          </div>
+        ) : null}
       </section>
     </Layout>
   );
@@ -266,6 +381,8 @@ const SingleCourseWrapper = styled.div`
     }
     .course-para {
       padding: 12px 0;
+      @apply text-white;
+      color: #fff !important;
     }
     .rating-star-val {
       margin-right: 7px;

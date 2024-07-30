@@ -1,84 +1,71 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import Layout from "./layout";
-import { useCoursesContext } from "../context/courses_context";
+// import { useCoursesContext } from "../context/courses_context";
 import { Link } from "react-router-dom";
-import { Oval } from "react-loader-spinner";
+// import { Oval } from "react-loader-spinner";
+// import parse from "html-react-parser";
 
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  // MDBIcon,
-  // MDBBtn,
-  MDBRipple,
-} from "mdb-react-ui-kit";
+// import {
+//   MDBContainer,
+//   MDBRow,
+//   MDBCol,
+//   MDBCard,
+//   MDBCardBody,
+//   MDBCardImage,
+//   // MDBIcon,
+//   // MDBBtn,
+//   MDBRipple,
+// } from "mdb-react-ui-kit";
+
 function Archive() {
-  const { courses } = useCoursesContext();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    if (courses && courses.length > 0) {
-      setLoading(false);
-    }
-  }, [courses]);
+  // const { courses } = useCoursesContext();
+  // const [loading, setLoading] = useState(true);
+  // console.log(courses);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Oval
-          height={50}
-          width={50}
-          color="#4fa94d"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="oval-loading"
-          secondaryColor="#4fa94d"
-          strokeWidth={2}
-          strokeWidthSecondary={2}
-        />
-      </div>
-    );
-  }
+  // const truncateText = (text, wordLimit) =>
+  //   text.split(" ").slice(0, wordLimit).join(" ") +
+  //   (text.split(" ").length > wordLimit ? "..." : "");
+  // useEffect(() => {
+  //   if (courses && courses.length > 0) {
+  //     setLoading(false);
+  //   }
+  // }, [courses]);
+
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center h-screen">
+  //       <Oval
+  //         height={50}
+  //         width={50}
+  //         color="#4fa94d"
+  //         wrapperStyle={{}}
+  //         wrapperClass=""
+  //         visible={true}
+  //         ariaLabel="oval-loading"
+  //         secondaryColor="#4fa94d"
+  //         strokeWidth={2}
+  //         strokeWidthSecondary={2}
+  //       />
+  //     </div>
+  //   );
+  // }
+
   return (
     <Layout>
-      <MDBContainer fluid>
-        {courses?.map((courses) => (
+      {/* <MDBContainer fluid>
+        {courses?.map((course) => (
           <MDBRow
             className="justify-content-center mb-3"
-            key={courses?.courseID}
+            key={course?.courseID}
           >
             <MDBCol md="12" xl="10">
               <MDBCard className="shadow-0 border rounded-3">
                 <MDBCardBody>
                   <MDBRow>
-                    {/* <MDBCol md="12" lg="3" className="mb-4 mb-lg-0">
-                      <MDBRipple
-                        rippleColor="light"
-                        rippleTag="div"
-                        className="bg-image rounded hover-zoom hover-overlay"
-                      >
-                        <MDBCardImage
-                          src={product.imageSrc}
-                          fluid
-                          className="w-100"
-                        />
-                        <a href={product.detailsLink}>
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </a>
-                      </MDBRipple>
-                    </MDBCol> */}
                     <MDBCol
                       md="12"
                       lg="3"
-                      className="mb-4 mb-lg-0 d-flex align-items-center justify-content-center"
+                      className="mb-4 mb-lg-0 d-flex align-items-center justify-content-center flex-column"
                     >
                       <MDBRipple
                         rippleColor="light"
@@ -86,55 +73,31 @@ function Archive() {
                         className="bg-image rounded hover-zoom hover-overlay"
                       >
                         <MDBCardImage
-                          src={courses?.imageSrc}
+                          src={course?.imageSrc}
                           fluid
-                          className="w-100"
+                          className="w-40 h-40"
                         />
-                        <a href={courses?.detailsLink}>
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </a>
                       </MDBRipple>
                     </MDBCol>
 
                     <MDBCol md="6">
-                      <h5 className="text-blue-500">{courses?.title}</h5>
-                      {/* <div className="d-flex flex-row">
-                        <div className="text-danger mb-1 me-2">
-                          {[...Array(product.rating)].map((_, index) => (
-                            <MDBIcon fas icon="star" key={index} />
-                          ))}
-                        </div>
-                        <span>{product.numReviews}</span>
-                      </div> */}
-                      {/* <div className="mt-1 mb-0 text-muted small">
-                        {product.features.map((feature, index) => (
-                          <React.Fragment key={index}>
-                            <span>{feature}</span>
-                            {index !== product.features.length - 1 && (
-                              <span className="text-primary"> • </span>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </div> */}
+                      <Link to={`/training/${course?.courseID}`}>
+                        <h5 className="text-blue-500">{course?.title}</h5>
+                      </Link>
+
                       <div className="mt-1 mb-0 text-muted small">
                         <span> Name: </span>
-                        <span>{courses?.instructors?.replace(/"/g, "")}</span>
+                        <span>{course?.instructor}</span>
                         <span className="ml-4"> Duration : </span>
-                        <span>{courses?.duration}</span>
+                        <span>{course?.duration}</span>
                         <br />
-                        {/* <span className=""> ID : </span> */}
-
-                        {/* <span>{courses.features[2]}</span> */}
                       </div>
                       <div className="mb-2 text-muted small"></div>
-
-                      {/* <p className="text-truncate mb-4 mb-md-0"> */}
-                      <p className=" mb-4 mb-md-0">{courses?.description}</p>
+                      <p className=" mb-4 mb-md-0">
+                        {course?.description
+                          ? parse(truncateText(course.description, 48))
+                          : null}
+                      </p>
                     </MDBCol>
                     <MDBCol
                       md="6"
@@ -142,36 +105,50 @@ function Archive() {
                       className="border-sm-start-none border-start"
                     >
                       <div className="d-flex flex-row align-items-center mb-1">
-                        {courses?.discountedPrice ? (
+                        {course?.discountedPrice ? (
                           <>
                             <h4 className="mb-1 me-1">
-                              ${courses.discountedPrice}
+                              ${course?.discountedPrice}
                             </h4>
                             <span className="text-danger">
-                              <s>${courses.price}</s>
+                              <s>
+                                $
+                                {course?.Pricings[0]?.price
+                                  ? course?.Pricings[1]?.price
+                                  : course?.price}
+                              </s>
                             </span>
                           </>
                         ) : (
-                          <h4 className="mb-1 me-1">${courses.price}</h4>
+                          <h4 className="mb-1 me-1">
+                            ${" "}
+                            {course?.Pricings[0]?.price
+                              ? course?.Pricings[0]?.price
+                              : course?.price}
+                          </h4>
                         )}
                       </div>
-                      {/* <h6 className="text-success">Free shipping</h6> */}
                       <div className="d-flex flex-column mt-4">
+                        {course?.webinarDate ? (
+                          <div className=" bg-gradient-to-r from-black via-black/80 to-black/40 text-white font-bold text-center py-2 mt-2 rounded">
+                            {course?.webinarDate
+                              ? new Date(
+                                  course?.webinarDate
+                                ).toLocaleDateString("en-US", {
+                                  weekday: "long",
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                })
+                              : null}
+                          </div>
+                        ) : null}
                         <Link
-                          to={`/training/${courses?.courseID}`}
+                          to={`/training/${course?.courseID}`}
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >
                           Details
-                        </Link>
-
-                        {/* <MDBBtn
-                          outline
-                          color="primary"
-                          size="sm"
-                          className="mt-2"
-                        >
-                          Add to wish list
-                        </MDBBtn> */}
+                        </Link>{" "}
                       </div>
                     </MDBCol>
                   </MDBRow>
@@ -180,7 +157,28 @@ function Archive() {
             </MDBCol>
           </MDBRow>
         ))}
-      </MDBContainer>
+      </MDBContainer> */}
+      <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div class="mx-auto max-w-screen-sm text-center">
+            {/* <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">
+              404
+            </h1> */}
+            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
+              Hi there!
+            </p>
+            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+              The webinar replay will be available shortly. Stay tuned!
+            </p>
+            <Link
+              to="/"
+              class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
+            >
+              Back to Homepage
+            </Link>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 }

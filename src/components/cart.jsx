@@ -27,7 +27,6 @@ function Cart() {
     total_amount,
     clearCart,
   } = useCartContext();
-  console.log(cartItems);
   const applyPromoCode = async () => {
     setPromoMessage("");
     if (!promoCode) return;
@@ -165,8 +164,8 @@ function Cart() {
                   </button>
                 </div>
                 <div className="cart-items-list grid">
-                  {cartItems.map((cartItem) => (
-                    <CartItem key={cartItem.courseID} cartItem={cartItem} />
+                  {cartItems.map((cartItem, index) => (
+                    <CartItem key={index} cartItem={cartItem} />
                   ))}
                 </div>
                 <div className="promo-code-section">
