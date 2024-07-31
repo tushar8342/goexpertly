@@ -76,7 +76,7 @@ const SingleTrainingDetail = () => {
 
   const dateTime = new Date(webinarDate);
 
-  const formattedDateTimeET = dateTime.toLocaleString("en-US", {
+  const formattedDateTimeEST = dateTime.toLocaleString("en-US", {
     timeZone: "America/New_York",
     weekday: "long",
     year: "numeric",
@@ -88,7 +88,7 @@ const SingleTrainingDetail = () => {
     hour12: true,
   });
 
-  const formattedDateTimePT = dateTime.toLocaleString("en-US", {
+  const formattedDateTimePST = dateTime.toLocaleString("en-US", {
     timeZone: "America/Los_Angeles",
     hour: "2-digit",
     minute: "2-digit",
@@ -168,8 +168,8 @@ const SingleTrainingDetail = () => {
                   <FaCalendarAlt className="text-white-500  " />
                 </span>
                 <span className="fs-14 course-info-txt fw-5">
-                  Date: {formattedDateTimeET?.replace("at", ", ")} ET /{" "}
-                  {formattedDateTimePT} PT
+                  Date: {formattedDateTimeEST?.replace("at", ", ")} EST /{" "}
+                  {formattedDateTimePST} PST
                 </span>
               </li>
               <li className="flex">
