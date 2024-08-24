@@ -25,19 +25,17 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
+    localStorage.clear();
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://api.goexpertly.com/users/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginState),
-        }
-      );
+      const response = await fetch(`https://api.goexpertly.com/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginState),
+      });
       const res = await response.json();
       // console.log(res);
       if (response.ok) {

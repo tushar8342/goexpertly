@@ -56,6 +56,7 @@ function Signup() {
   };
 
   const createAccount = async () => {
+    localStorage.clear();
     try {
       const response = await fetch(`https://api.goexpertly.com/users/signup`, {
         method: "POST",
