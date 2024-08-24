@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "./layout";
 import { useAuth } from "../context/AuthProvider";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 function MyOrders() {
   const { token, user } = useAuth();
   const [orders, setOrders] = useState(null);
@@ -34,6 +34,27 @@ function MyOrders() {
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
           <div className="p-6 rounded-lg">Loading...</div>
+        </div>
+      </Layout>
+    );
+  }
+  if (orders?.enrolledCourses < 1) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex flex-grow items-center justify-center bg-gray-50">
+          <div className="rounded-lg bg-white p-8 text-center shadow-xl">
+            <h1 className="mb-4 text-4xl font-bold">No orders available!</h1>
+            <p className="text-gray-600">
+              Your Order is currently empty. Explore our courses and add items
+              to your cart.
+            </p>
+            <Link
+              to="/training"
+              className="mt-4 inline-block rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
+            >
+              Browse Training
+            </Link>
+          </div>
         </div>
       </Layout>
     );
