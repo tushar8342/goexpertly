@@ -188,7 +188,7 @@ function Header() {
               </div>
               <div className="relative">
                 <button onClick={handleUserMenuToggle}>
-                  <img src={profilePNG} alt="png profile" className="h-9 w-9" />
+                  <img src={profilePNG} alt="goexpertly profile" className="h-9 w-9" />
                 </button>
                 {isUserMenuOpen && (
                   <ul className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">

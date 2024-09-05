@@ -73,7 +73,7 @@ function Aboutus() {
               <div className="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                  alt="aboutUS Page Image1"
+                  alt="goexpertly"
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ function Aboutus() {
             <img
               src={tailoredSolutions}
               className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
-              alt="aboutUS Page Image2"
+              alt="goexpertly"
             />
           </div>
           {/* 
@@ -141,7 +141,7 @@ function Aboutus() {
             <img
               src={experts}
               className="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
-              alt="aboutUS Page Image3"
+              alt="goexpertly"
             />
           </div>
         </div>
@@ -151,7 +151,7 @@ function Aboutus() {
             <img
               src={patners}
               className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 "
-              alt="aboutUS Page Image4"
+              alt="goexpertly"
             />
           </div>
           {/* 
@@ -191,7 +191,7 @@ function Aboutus() {
             <img
               src={excel}
               className="pl-4 sm:pr-10 xl:pl-10 lg:pr-32"
-              alt="aboutUS Page Image5"
+              alt="goexpertly aboutUS "
             />
           </div>
         </div>
@@ -216,12 +216,12 @@ function Aboutus() {
             </div>
             <div
               className="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"
-              alt="aboutUS Page Image6"
+              alt="goexpertly  Image6"
             >
               <img
                 className="mx-auto sm:max-w-sm lg:max-w-full"
                 src={impact}
-                alt="aboutUS Page Image7"
+                alt="goexpertly Webinar Image7"
               />
             </div>
           </div>

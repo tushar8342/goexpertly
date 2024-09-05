@@ -9,7 +9,10 @@ const CartItem = ({ cartItem }) => {
   return (
     <CartItemWrapper className="grid">
       <div className="cart-item-img">
-        <img src={cartItem.image} alt={cartItem.course_name} />
+        <img
+          src={cartItem.image}
+          alt={`goexpertly - ${cartItem.course_name}`}
+        />
       </div>
       <div className="cart-item-info">
         <p className="fw-7 fs-15">{cartItem.course_name}</p>

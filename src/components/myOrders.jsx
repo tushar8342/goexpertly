@@ -84,12 +84,12 @@ function MyOrders() {
                     <img
                       className="w-full hidden md:block"
                       src={course.imageSrc}
-                      alt={course.title}
+                      alt={`goexpertly ${course.title}`}
                     />
                     <img
                       className="w-full md:hidden"
                       src={course.imageSrc}
-                      alt={course.title}
+                      alt={`goexpertly ${course.title}`}
                     />
                   </div>
                   <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
