@@ -22,6 +22,7 @@ import PaymentCancel from "../components/payment-cancel";
 import Profile from "../components/profile";
 import MyOrders from "../components/myOrders";
 import UpdatePassword from "../components/auth/updatePassword";
+import Search from "../components/search";
 
 const AllRoutes = () => {
   return (
@@ -47,6 +48,7 @@ const AllRoutes = () => {
       <Route path="/payment-cancel" element={<PaymentCancel />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/myOrders" element={<MyOrders />} />
+      <Route path="/search" element={<Search />} />
       profile
     </Routes>
   );
