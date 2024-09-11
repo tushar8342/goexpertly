@@ -26,7 +26,7 @@ function Search() {
   useEffect(() => {
     if (query) {
       setLoading(true);
-      fetch(`https://api.goexpertly.com/admin/courses?search=${query}`)
+      fetch(`https://api.goexpertly.com/admin/courses/search?keyword=${query}`)
         .then((response) => response.json())
         .then((data) => {
           setCourses(data);
