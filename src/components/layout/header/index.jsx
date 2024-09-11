@@ -7,7 +7,7 @@ import { useAuth } from "../../../context/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 import profilePNG from "../../../Assets/profilePNG.png";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 function Header() {
   const { total_items } = useCartContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +18,12 @@ function Header() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
+  const visiblePaths = ["/", "/training", "/archive"];
+  const shouldShowSearch =
+    visiblePaths.includes(location.pathname) ||
+    location.pathname.startsWith("/search");
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm) {
@@ -284,7 +289,7 @@ function Header() {
           className="w-full outline-none bg-transparent text-gray-600 font-semibold text-[15px]"
         />
       </div> */}
-      {isMenuOpen ? null : (
+      {shouldShowSearch && !isMenuOpen ? (
         <form onSubmit={handleSearch} className="max-w-lg mx-auto mt-1.5">
           <div className="flex">
             <div className="relative w-full">
@@ -321,7 +326,7 @@ function Header() {
             </div>
           </div>
         </form>
-      )}
+      ) : null}
     </header>
   );
 }
