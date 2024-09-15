@@ -21,9 +21,7 @@ function Archive() {
   const { courses } = useCoursesContext();
   const [loading, setLoading] = useState(true);
 
-  const filteredCourses = courses.filter(
-    (course) => course.archieve === "truee"
-  );
+  const filteredCourses = courses.filter((course) => course.archieve === true);
 
   const truncateText = (text, wordLimit) =>
     text.split(" ").slice(0, wordLimit).join(" ") +
@@ -172,7 +170,7 @@ function Archive() {
                         )}
                       </div>
                       <div className="d-flex flex-column mt-4">
-                        {course?.webinarDate ? (
+                        {/* {course?.webinarDate ? (
                           <div className=" bg-gradient-to-r from-black via-black/80 to-black/40 text-white font-bold text-center py-2 mt-2 rounded">
                             {course?.webinarDate
                               ? new Date(
@@ -185,9 +183,9 @@ function Archive() {
                                 })
                               : null}
                           </div>
-                        ) : null}
+                        ) : null} */}
                         <Link
-                          to={`/training/${course?.courseID}`}
+                          to={`/archive/${course?.courseID}`}
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >
                           Details

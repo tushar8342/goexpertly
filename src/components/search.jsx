@@ -152,7 +152,9 @@ function Search() {
                             </h4>
                           )}
                         </div>
-                        {course?.webinarDate ? (
+                        {(course?.archieve === null ||
+                          course?.archieve === false) &&
+                        course?.webinarDate ? (
                           <div className=" bg-gradient-to-r from-black via-black/80 to-black/40 text-white font-bold text-center py-2 mt-2 rounded">
                             {new Date(course?.webinarDate).toLocaleDateString(
                               "en-US",
@@ -166,11 +168,15 @@ function Search() {
                           </div>
                         ) : null}
                         <Link
-                          to={`/training/${course?.courseID}`}
+                          to={
+                            course?.archieve === true
+                              ? `/archive/${course?.courseID}`
+                              : `/training/${course?.courseID}`
+                          }
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >
                           Details
-                        </Link>{" "}
+                        </Link>
                       </MDBCol>
                     </MDBRow>
                   </MDBCardBody>

@@ -23,6 +23,7 @@ import Profile from "../components/profile";
 import MyOrders from "../components/myOrders";
 import UpdatePassword from "../components/auth/updatePassword";
 import Search from "../components/search";
+import SingleArchiveDetail from "../components/SingleArchiveDetail";
 
 const AllRoutes = () => {
   return (
@@ -42,6 +43,7 @@ const AllRoutes = () => {
       <Route path="/webinars" element={<Webinars />} />
       <Route path="/training" element={<Training />} />
       <Route path="/training/:id" element={<SingleTrainingDetail />} />
+      <Route path="/archive/:id" element={<SingleArchiveDetail />} />
       <Route path="/archive" element={<Archive />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/payment-success/:paramsid" element={<PaymentSuccess />} />
