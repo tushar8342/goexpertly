@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../layout";
 import Slider from "../slider/slider";
 import Upcomingwebinar from "../upcomingwebinar";
-// import OurExperts from '../OurExperts'
+import OurExperts from "../OurExperts";
 // import Testimonials from '../Testimonials'
 
 function Home() {
@@ -10,6 +10,7 @@ function Home() {
     <Layout>
       <Slider />
       <Upcomingwebinar />
+      <OurExperts />
     </Layout>
   );
 }
