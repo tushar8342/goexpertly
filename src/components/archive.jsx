@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import { useCoursesContext } from "../context/courses_context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import parse from "html-react-parser";
 
@@ -20,9 +20,11 @@ import {
 function Archive() {
   const { courses } = useCoursesContext();
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
   const filteredCourses = courses.filter((course) => course.archieve === true);
-
+  const handleDetailsClick = () => {
+    sessionStorage.setItem("scrollPosition", window.scrollY);
+  };
   const truncateText = (text, wordLimit) =>
     text.split(" ").slice(0, wordLimit).join(" ") +
     (text.split(" ").length > wordLimit ? "..." : "");
@@ -31,6 +33,15 @@ function Archive() {
       setLoading(false);
     }
   }, [courses]);
+  useEffect(() => {
+    if (!loading) {
+      const scrollPosition = sessionStorage.getItem("scrollPosition");
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem("scrollPosition");
+      }
+    }
+  }, [loading, location]);
 
   if (loading) {
     return (
@@ -122,7 +133,10 @@ function Archive() {
                     </MDBCol>
 
                     <MDBCol md="6">
-                      <Link to={`/training/${course?.courseID}`}>
+                      <Link
+                        onClick={handleDetailsClick}
+                        to={`/archive/${course?.courseID}`}
+                      >
                         <h5 className="text-blue-500">{course?.title}</h5>
                       </Link>
 
@@ -185,6 +199,7 @@ function Archive() {
                           </div>
                         ) : null} */}
                         <Link
+                          onClick={handleDetailsClick}
                           to={`/archive/${course?.courseID}`}
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >

@@ -48,6 +48,11 @@ const SingleArchiveDetail = () => {
       pricing.sessionType === "Recorded Plus Transcript session"
   ).sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
   // console.log("filteredPricings:", filteredPricings);
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0; // For most browsers
+    document.body.scrollTop = 0; // For Safari
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

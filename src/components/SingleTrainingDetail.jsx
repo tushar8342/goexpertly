@@ -19,6 +19,12 @@ const SingleTrainingDetail = () => {
   const [selectedPricing, setSelectedPricing] = useState(null);
 
   useEffect(() => {
+    // window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0; // For most browsers
+    document.body.scrollTop = 0; // For Safari
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       await fetchSingleCourse(id);
       setLoading(false);

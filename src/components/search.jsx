@@ -105,7 +105,13 @@ function Search() {
                       </MDBCol>
 
                       <MDBCol md="6">
-                        <Link to={`/training/${course?.courseID}`}>
+                        <Link
+                          to={
+                            course?.archieve === true
+                              ? `/archive/${course?.courseID}`
+                              : `/training/${course?.courseID}`
+                          }
+                        >
                           <h5 className="text-blue-500">{course?.title}</h5>
                         </Link>
 

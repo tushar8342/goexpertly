@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import { useCoursesContext } from "../context/courses_context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import parse from "html-react-parser";
 
@@ -20,11 +20,13 @@ import {
 function Training() {
   const { courses } = useCoursesContext();
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
   const filteredCourses = courses.filter(
     (course) => course.archieve === null || course.archieve === false
   );
-
+  const handleDetailsClick = () => {
+    sessionStorage.setItem("scrollPosition", window.scrollY);
+  };
   // console.log(courses);
   // console.log('coursess:', courses)
   // if (!courses || courses.length === 0) {
@@ -42,6 +44,16 @@ function Training() {
       setLoading(false);
     }
   }, [courses]);
+
+  useEffect(() => {
+    if (!loading) {
+      const scrollPosition = sessionStorage.getItem("scrollPosition");
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem("scrollPosition");
+      }
+    }
+  }, [loading, location]);
 
   if (loading) {
     return (
@@ -146,7 +158,10 @@ function Training() {
                     `}</style> */}
 
                     <MDBCol md="6">
-                      <Link to={`/training/${course?.courseID}`}>
+                      <Link
+                        onClick={handleDetailsClick}
+                        to={`/training/${course?.courseID}`}
+                      >
                         <h5 className="text-blue-500">{course?.title}</h5>
                       </Link>
                       {/* <div className="d-flex flex-row">
@@ -227,6 +242,7 @@ function Training() {
                           </div>
                         ) : null}
                         <Link
+                          onClick={handleDetailsClick}
                           to={`/training/${course?.courseID}`}
                           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         >
