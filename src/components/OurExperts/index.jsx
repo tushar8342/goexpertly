@@ -16,14 +16,16 @@ function OurExperts() {
         </p> */}
 
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4">
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          {/* <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent"> */}
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border  rounded-xl hover:border-transparent group">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="https://goexpertly-bucket.s3.amazonaws.com/instructors/Paul%20Lopushinsky_Pic.jpg"
               alt="goexpertly"
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            {/* <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white"> */}
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize">
               Paul Lopushinsky
             </h1>
 
@@ -79,14 +81,16 @@ function OurExperts() {
             </div> */}
           </div>
 
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          {/* <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent"> */}
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border  rounded-xl hover:border-transparent group">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="https://goexpertly-bucket.s3.amazonaws.com/instructors/Michael%20Levitt_HeadShot%20(2).png"
               alt="goexpertly"
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            {/* <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white"> */}
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize">
               Michael D. Levitt
             </h1>
 
@@ -142,14 +146,16 @@ function OurExperts() {
             </div> */}
           </div>
 
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          {/* <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent"> */}
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border  rounded-xl hover:border-transparent group">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="https://goexpertly-bucket.s3.amazonaws.com/instructors/Headshot%20of%20Judy%20with%20Lake%20and%20green.jpeg"
               alt="goexpertly"
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            {/* <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white"> */}
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize">
               Judy Ryan
             </h1>
 
@@ -205,14 +211,16 @@ function OurExperts() {
             </div> */}
           </div>
 
-          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+          {/* <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent"> */}
+          <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border  rounded-xl hover:border-transparent group">
             <img
               className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
               src="https://goexpertly-bucket.s3.amazonaws.com/instructors/RichMclaughlin.jpg"
               alt="goexpertly"
             />
 
-            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">
+            {/* <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white"> */}
+            <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize">
               Rich McLaughlin
             </h1>
 

@@ -237,6 +237,7 @@ function Training() {
                                   year: "numeric",
                                   month: "long",
                                   day: "numeric",
+                                  timeZone: "UTC"
                                 })
                               : null}
                           </div>
