@@ -20,7 +20,7 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const visiblePaths = ["/", "/training", "/archive"];
+  const visiblePaths = ["/", "/training", "/archive", "/resources"];
   const shouldShowSearch =
     visiblePaths.includes(location.pathname) ||
     location.pathname.startsWith("/search");
@@ -134,6 +134,14 @@ function Header() {
                     className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
                   >
                     Archive
+                  </Link>
+                </li>
+                <li className="border-b py-2 ">
+                  <Link
+                    to="/resources"
+                    className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
+                  >
+                    Resources
                   </Link>
                 </li>
               </ul>

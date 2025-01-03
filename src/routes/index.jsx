@@ -24,6 +24,12 @@ import MyOrders from "../components/myOrders";
 import UpdatePassword from "../components/auth/updatePassword";
 import Search from "../components/search";
 import SingleArchiveDetail from "../components/SingleArchiveDetail";
+import Resources from "../components/resources";
+import Article1 from "../components/resources/Article1";
+import Article2 from "../components/resources/Article2";
+import Article3 from "../components/resources/Article3";
+import Article4 from "../components/resources/Article4";
+import Article5 from "../components/resources/Article5";
 
 const AllRoutes = () => {
   return (
@@ -51,7 +57,27 @@ const AllRoutes = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/myOrders" element={<MyOrders />} />
       <Route path="/search" element={<Search />} />
-      profile
+      <Route path="/resources" element={<Resources />} />
+      <Route
+        path="/resources/5-best-practices-for-handling-workplace-sexual-harassment-complaints"
+        element={<Article1 />}
+      />
+      <Route
+        path="/resources/california-leaves-of-absence-employers-must-understand-compliance"
+        element={<Article2 />}
+      />{" "}
+      <Route
+        path="/resources/project-management-for-human-resource-managers"
+        element={<Article3 />}
+      />
+      <Route
+        path="/resources/how-metrics-can-help-avoid-common-compliance-mistakes"
+        element={<Article4 />}
+      />
+      <Route
+        path="/resources/the-coronavirus-aid-relief-and-economic-security-cares-act-and-its-impact-on-unemployment-insurance"
+        element={<Article5 />}
+      />
     </Routes>
   );
 };
