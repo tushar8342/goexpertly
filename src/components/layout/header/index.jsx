@@ -128,14 +128,14 @@ function Header() {
                     Training
                   </Link>
                 </li>
-                <li className="border-b py-2 ">
+                {/* <li className="border-b py-2 ">
                   <Link
                     to="/archive"
                     className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
                   >
                     Archive
                   </Link>
-                </li>
+                </li> */}
                 <li className="border-b py-2 ">
                   <Link
                     to="/resources"

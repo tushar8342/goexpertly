@@ -8,7 +8,8 @@ import { TbWorld } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/cart_context";
 import { Oval } from "react-loader-spinner";
-import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import { FaClock } from "react-icons/fa";
+// import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import parse from "html-react-parser";
 
 const SingleArchiveDetail = () => {
@@ -30,7 +31,7 @@ const SingleArchiveDetail = () => {
     // content,
     imageSrc,
     Pricings,
-    webinarDate,
+    // webinarDate,
     duration,
     areas_covered,
     who_will_benefit,
@@ -87,19 +88,19 @@ const SingleArchiveDetail = () => {
     );
   }
 
-  const dateTime = new Date(webinarDate);
+  // const dateTime = new Date(webinarDate);
 
-  const formattedDateTimeEST = dateTime.toLocaleString("en-US", {
-    timeZone: "America/New_York",
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    // hour: "2-digit",
-    // minute: "2-digit",
-    // second: "2-digit",
-    // hour12: true,
-  });
+  // const formattedDateTimeEST = dateTime.toLocaleString("en-US", {
+  //   timeZone: "America/New_York",
+  //   weekday: "long",
+  //   year: "numeric",
+  //   month: "long",
+  //   day: "numeric",
+  //   // hour: "2-digit",
+  //   // minute: "2-digit",
+  //   // second: "2-digit",
+  //   // hour12: true,
+  // });
 
   //   const formattedDateTimePST = dateTime.toLocaleString("en-US", {
   //     timeZone: "America/Los_Angeles",
@@ -186,14 +187,14 @@ const SingleArchiveDetail = () => {
                   English [Auto]
                 </span>
               </li> */}
-              <li className="flex">
+              {/* <li className="flex">
                 <span>
                   <FaCalendarAlt className="text-white-500  " />
                 </span>
                 <span className="fs-14 course-info-txt fw-5">
                   Last Recorded Date: {formattedDateTimeEST}
                 </span>
-              </li>
+              </li> */}
               <li className="flex">
                 <span>
                   <FaClock className="text-white-500  " />

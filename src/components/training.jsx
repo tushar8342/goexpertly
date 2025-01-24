@@ -16,6 +16,7 @@ import {
   // MDBBtn,
   MDBRipple,
 } from "mdb-react-ui-kit";
+import Archive from "./archive";
 
 function Training() {
   const { courses } = useCoursesContext();
@@ -237,7 +238,7 @@ function Training() {
                                   year: "numeric",
                                   month: "long",
                                   day: "numeric",
-                                  timeZone: "UTC"
+                                  timeZone: "UTC",
                                 })
                               : null}
                           </div>
@@ -266,6 +267,7 @@ function Training() {
           </MDBRow>
         ))}
       </MDBContainer>
+      <Archive />
     </Layout>
   );
 }
