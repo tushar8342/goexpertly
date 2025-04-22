@@ -29,6 +29,7 @@ function Training() {
     sessionStorage.setItem("scrollPosition", window.scrollY);
   };
   // console.log(courses);
+  // console.log(courses);
   // console.log('coursess:', courses)
   // if (!courses || courses.length === 0) {
   //   return <p>No courses available.</p>;
