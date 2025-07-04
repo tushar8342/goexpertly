@@ -14,6 +14,7 @@ import ContactUs from "../components/contact-us";
 import Consulting from "../components/consulting";
 import Webinars from "../components/webinars";
 import Training from "../components/training";
+import Expertmarketplace from "../components/expertmarketplace";
 import Archive from "../components/archive";
 import Cart from "../components/cart";
 import SingleTrainingDetail from "../components/SingleTrainingDetail";
@@ -58,6 +59,7 @@ const AllRoutes = () => {
       <Route path="/myOrders" element={<MyOrders />} />
       <Route path="/search" element={<Search />} />
       <Route path="/resources" element={<Resources />} />
+      <Route path="/expertmarketplace" element={<Expertmarketplace />} />
       <Route
         path="/resources/5-best-practices-for-handling-workplace-sexual-harassment-complaints"
         element={<Article1 />}
