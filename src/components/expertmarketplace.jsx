@@ -11,7 +11,7 @@ function Expertmarketplace() {
 
         <section className="mb-6">
           <h2 className="text-2xl md:text-3xl font-semibold text-blue-700 mb-4">
-            💡 What Is the Expert Marketplace?
+            What Is the Expert Marketplace?
           </h2>
           <p className="text-lg mb-4">
             The Expert Marketplace is your gateway to a global network of
