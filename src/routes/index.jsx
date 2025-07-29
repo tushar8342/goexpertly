@@ -31,6 +31,8 @@ import Article2 from "../components/resources/Article2";
 import Article3 from "../components/resources/Article3";
 import Article4 from "../components/resources/Article4";
 import Article5 from "../components/resources/Article5";
+import SingleLifeSciences from "../components/SingleLifeSciences";
+import LifeSciences from "../components/lifeSciences";
 
 const AllRoutes = () => {
   return (
@@ -52,6 +54,8 @@ const AllRoutes = () => {
       <Route path="/training/:id" element={<SingleTrainingDetail />} />
       <Route path="/archive/:id" element={<SingleArchiveDetail />} />
       <Route path="/archive" element={<Archive />} />
+      <Route path="/lifesciences" element={<LifeSciences />} />
+      <Route path="/lifesciences/:id" element={<SingleLifeSciences />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/payment-success/:paramsid" element={<PaymentSuccess />} />
       <Route path="/payment-cancel" element={<PaymentCancel />} />

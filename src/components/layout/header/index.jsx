@@ -134,6 +134,15 @@ function Header() {
                     Training
                   </Link>
                 </li>
+
+                <li className="border-b py-2 ">
+                  <Link
+                    to="/lifesciences"
+                    className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
+                  >
+                    Life Sciences
+                  </Link>
+                </li>
                 {/* <li className="border-b py-2 ">
                   <Link
                     to="/archive"
