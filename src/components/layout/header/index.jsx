@@ -126,24 +126,45 @@ function Header() {
                 </svg>
               </Link>
               <ul className="absolute shadow-lg bg-white space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500">
-                <li className="border-b py-2 ">
+                <li className="group/sub relative border-b py-2 ">
                   <Link
-                    to="/training"
+                    to=""
                     className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
                   >
                     Training
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16px"
+                      height="16px"
+                      className="ml-1 inline-block transition-all group-hover/sub:rotate-180"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                        data-name="16"
+                        data-original="#000000"
+                      />
+                    </svg>
                   </Link>
-                </li>
-
-                <li className="border-b py-2 ">
-                  <Link
-                    to="/lifesciences"
-                    className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
-                  >
-                    Life Sciences
-                  </Link>
-                </li>
-                {/* <li className="border-b py-2 ">
+                  <ul className="absolute shadow-lg bg-white space-y-3 lg:top-8 lg:left-0 max-lg:top-8 max-lg:left-0 min-w-[250px] z-50 max-h-0 overflow-hidden group-hover/sub:opacity-100 group-hover/sub:max-h-[700px] px-6 group-hover/sub:pb-4 group-hover/sub:pt-6 transition-all duration-500">
+                    <li className="border-b py-2">
+                      <Link
+                        to="/training"
+                        className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
+                      >
+                        HR
+                      </Link>
+                    </li>
+                    <li className="border-b py-2">
+                      <Link
+                        to="/lifesciences"
+                        className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
+                      >
+                        Life Sciences
+                      </Link>
+                    </li>
+                  </ul>{" "}
+                  {/* <li className="border-b py-2 ">
                   <Link
                     to="/archive"
                     className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
@@ -151,6 +172,7 @@ function Header() {
                     Archive
                   </Link>
                 </li> */}
+                </li>
                 <li className="border-b py-2 ">
                   <Link
                     to="/resources"
@@ -159,7 +181,6 @@ function Header() {
                     Resources
                   </Link>
                 </li>
-
                 <li className="border-b py-2 ">
                   <Link
                     to="/expertmarketplace"
