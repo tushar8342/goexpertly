@@ -152,7 +152,7 @@ function Header() {
                         to="/training"
                         className="hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"
                       >
-                        HR
+                        Human Resources
                       </Link>
                     </li>
                     <li className="border-b py-2">
